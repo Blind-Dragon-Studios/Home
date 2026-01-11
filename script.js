@@ -56,7 +56,7 @@ function initThreeJS() {
 
     // Create particle geometry
     const particlesGeometry = new THREE.BufferGeometry();
-    const particleCount = 4000;
+    const particleCount = 2000;
 
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
@@ -109,18 +109,13 @@ function initThreeJS() {
                 
                 vec3 pos = position;
                 
-                // Floating animation
-                pos.y += sin(uTime * 0.4 + position.x * 0.3) * 0.15 * uIntensity;
-                pos.x += cos(uTime * 0.25 + position.y * 0.3) * 0.15 * uIntensity;
-                pos.z += sin(uTime * 0.3 + position.x * 0.2) * 0.1 * uIntensity;
-                
-                // Mouse influence
-                float distToMouse = length(pos.xy - uMouse * 6.0);
-                pos.z += smoothstep(4.0, 0.0, distToMouse) * 0.8 * uIntensity;
+                // Simplified floating animation
+                pos.y += sin(uTime * 0.3 + position.x * 0.2) * 0.1 * uIntensity;
+                pos.x += cos(uTime * 0.2 + position.y * 0.2) * 0.1 * uIntensity;
                 
                 vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
                 
-                gl_PointSize = size * uPixelRatio * (250.0 / -mvPosition.z);
+                gl_PointSize = size * uPixelRatio * (200.0 / -mvPosition.z);
                 gl_Position = projectionMatrix * mvPosition;
             }
         `,
@@ -143,20 +138,20 @@ function initThreeJS() {
     particles = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particles);
 
-    // Sonar rings
-    const ringGeometry = new THREE.RingGeometry(0.5, 0.52, 64);
+    // Sonar rings (reduced count for performance)
+    const ringGeometry = new THREE.RingGeometry(0.5, 0.52, 32);
     const ringMaterial = new THREE.MeshBasicMaterial({
         color: 0xD4AF37,
         transparent: true,
-        opacity: 0.08,
+        opacity: 0.06,
         side: THREE.DoubleSide
     });
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 3; i++) {
         const ring = new THREE.Mesh(ringGeometry, ringMaterial.clone());
-        ring.position.z = -8 - i * 2;
-        ring.scale.set(1 + i * 0.6, 1 + i * 0.6, 1);
-        ring.material.opacity = 0.08 - i * 0.012;
+        ring.position.z = -8 - i * 3;
+        ring.scale.set(1 + i * 0.8, 1 + i * 0.8, 1);
+        ring.material.opacity = 0.06 - i * 0.015;
         rings.push(ring);
         scene.add(ring);
     }
@@ -176,7 +171,7 @@ function initThreeJS() {
 function animateThreeJS() {
     animationId = requestAnimationFrame(animateThreeJS);
 
-    time += 0.008;
+    time += 0.005;
 
     // Smooth mouse
     mouse.x += (mouse.targetX - mouse.x) * 0.04;
@@ -199,11 +194,9 @@ function animateThreeJS() {
     camera.position.y += (mouse.y * 0.25 - camera.position.y) * 0.015;
     camera.lookAt(scene.position);
 
-    // Animate rings
+    // Animate rings (simplified for performance)
     rings.forEach((ring, i) => {
-        ring.scale.x = 1 + i * 0.6 + Math.sin(time * 0.8 + i * 0.5) * 0.15;
-        ring.scale.y = ring.scale.x;
-        ring.rotation.z = time * 0.08 * (i % 2 === 0 ? 1 : -1);
+        ring.rotation.z = time * 0.05 * (i % 2 === 0 ? 1 : -1);
     });
 
     renderer.render(scene, camera);
