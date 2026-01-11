@@ -3,520 +3,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Studio | Blind Dragon Studios</title>
-    
-    <!-- Favicon -->
+    <title>About - Blind Dragon Studios</title>
     <link rel="icon" type="image/png" href="icon.png">
-    <link rel="apple-touch-icon" href="icon.png">
-    
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Shared Styles -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Page-Specific Styles -->
     <style>
-        .about-hero {
-            min-height: 60vh;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --black: #050505;
+            --white: #f5f5f0;
+            --gold: #D4AF37;
+            --gray: rgba(245, 245, 240, 0.5);
+        }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 3rem;
             display: flex;
-            align-items: flex-end;
-            padding: 8rem 4rem 4rem;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(5,5,5,0.95), transparent);
         }
         
-        .magazine-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1px;
-            background: var(--grid-line);
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--white);
         }
         
-        .magazine-cell {
-            background: var(--cave-black);
-            padding: 4rem;
+        .logo img { height: 40px; }
+        
+        .logo span {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--white); }
+        .nav-links a.active { color: var(--gold); }
+        
+        .discord-btn {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.6rem 1.2rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .discord-btn:hover { background: var(--white); }
+        
+        .page-header {
+            min-height: 50vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-        }
-        
-        .magazine-cell.image-cell {
-            padding: 0;
-            min-height: 400px;
-        }
-        
-        .magazine-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: relative;
-        }
-        
-        .magazine-image-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--cave-deep) 0%, var(--cave-black) 50%, var(--cave-deep) 100%);
-            position: relative;
-            display: flex;
             align-items: center;
-            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            border-bottom: 1px solid rgba(212,175,55,0.1);
         }
         
-        .magazine-image-placeholder::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(ellipse at 30% 40%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 60%, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
+        .section-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
         }
         
-        .magazine-image-placeholder::after {
-            content: '';
-            position: absolute;
-            inset: 2rem;
-            border: 1px solid var(--grid-line);
+        .page-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 400;
+        }
+        
+        .page-title .gold { color: var(--gold); }
+        
+        section {
+            padding: 5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-title .gold { color: var(--gold); }
+        
+        .section-text {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            max-width: 700px;
         }
         
         .values-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--grid-line);
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
         
-        .value-cell {
-            background: var(--cave-black);
-            padding: 3rem;
-            text-align: center;
-            transition: all 0.4s ease;
+        .value-card {
+            border: 1px solid rgba(212,175,55,0.1);
+            padding: 2rem;
         }
         
-        .value-cell:hover {
-            background: rgba(212, 175, 55, 0.02);
-        }
-        
-        .value-number {
+        .value-card h3 {
             font-family: 'Cinzel', serif;
-            font-size: 4rem;
-            color: rgba(212, 175, 55, 0.1);
-            line-height: 1;
-            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--gold);
         }
         
-        .value-title {
+        .value-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .timeline {
+            margin-top: 3rem;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(212,175,55,0.1);
+        }
+        
+        .timeline-year {
             font-family: 'Cinzel', serif;
-            font-size: 1.25rem;
-            color: var(--bone-white);
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: var(--gold);
+            min-width: 100px;
         }
         
-        .value-text {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-        
-        .team-section {
-            padding: 6rem 4rem;
-        }
-        
-        .quote-block {
-            position: relative;
-            padding: 4rem;
-            border-left: 1px solid var(--fossil-gold);
-            margin: 4rem 0;
-        }
-        
-        .quote-block::before {
-            content: '"';
-            position: absolute;
-            top: 1rem;
-            left: 2rem;
+        .timeline-content h3 {
             font-family: 'Cinzel', serif;
-            font-size: 6rem;
-            color: rgba(212, 175, 55, 0.1);
-            line-height: 1;
+            margin-bottom: 0.5rem;
         }
         
-        .quote-text {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.25rem, 3vw, 2rem);
-            line-height: 1.6;
-            color: var(--bone-white);
-            position: relative;
-            z-index: 1;
+        .timeline-content p {
+            color: var(--gray);
+            font-size: 0.9rem;
         }
         
-        .quote-author {
-            margin-top: 2rem;
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(212,175,55,0.1);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-links a {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--fossil-gold);
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
         }
         
-        @media (max-width: 1024px) {
-            .magazine-layout {
-                grid-template-columns: 1fr;
-            }
-            
-            .magazine-cell {
-                padding: 3rem 2rem;
-            }
-            
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .about-hero {
-                padding: 6rem 2rem 3rem;
-            }
+        .footer-links a:hover { color: var(--gold); }
+        
+        .copyright {
+            font-size: 0.65rem;
+            color: rgba(245,245,240,0.3);
         }
         
         @media (max-width: 768px) {
-            .team-section {
-                padding: 4rem 1.5rem;
-            }
-            
-            .quote-block {
-                padding: 2rem;
-            }
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            .logo span { display: none; }
+            .timeline-item { flex-direction: column; gap: 0.5rem; }
+            .timeline-year { min-width: auto; }
+            .footer-content { flex-direction: column; text-align: center; }
         }
     </style>
-    
-    <!-- Tailwind Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'cave-black': '#050505',
-                        'cave-deep': '#0a0a0a',
-                        'bone-white': '#F5F5F0',
-                        'fossil-gold': '#D4AF37',
-                    },
-                    fontFamily: {
-                        'cinzel': ['Cinzel', 'serif'],
-                        'montserrat': ['Montserrat', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
 </head>
 <body>
-    <!-- ============================================
-         PAGE TRANSITION
-    ============================================ -->
-    <div class="page-transition"></div>
-
-    <!-- ============================================
-         NOISE OVERLAY
-    ============================================ -->
-    <div class="noise-overlay"></div>
-
-    <!-- ============================================
-         GRID OVERLAY
-    ============================================ -->
-    <div class="grid-overlay"></div>
-
-    <!-- ============================================
-         CUSTOM CURSOR
-    ============================================ -->
-    <div class="cursor"></div>
-    <div class="cursor-glow"></div>
-
-    <!-- ============================================
-         THREE.JS CANVAS
-    ============================================ -->
-    <canvas id="three-canvas"></canvas>
-
-    <!-- ============================================
-         NAVIGATION
-    ============================================ -->
-    <nav class="nav">
-        <a href="index.html" class="nav-logo">
-            <img src="icon.png" alt="Blind Dragon Studios">
-            <span class="nav-logo-text hidden md:block">BLIND DRAGON</span>
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="icon.png" alt="Blind Dragon">
+            <span>BLIND DRAGON</span>
         </a>
-        
         <div class="nav-links">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link active">The Studio</a>
-            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">Studio</a>
+            <a href="projects.html">Projects</a>
+            <a href="https://discord.gg/X853nZYY9F" target="_blank" class="discord-btn">Enter Discord</a>
         </div>
-        
-        <a href="https://discord.gg/X853nZYY9F" target="_blank" class="nav-cta">Enter Discord</a>
-        
-        <button class="nav-toggle" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
     </nav>
 
-    <!-- Mobile Navigation -->
-    <div class="nav-mobile">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="about.html" class="nav-link active">The Studio</a>
-        <a href="projects.html" class="nav-link">Projects</a>
-        <a href="https://discord.gg/X853nZYY9F" target="_blank" class="nav-cta">Enter Discord</a>
-    </div>
+    <header class="page-header">
+        <p class="section-label">About the Studio</p>
+        <h1 class="page-title">The <span class="gold">Vision</span></h1>
+    </header>
 
-    <!-- ============================================
-         MAIN CONTENT
-    ============================================ -->
-    <div class="content">
-        <!-- About Hero -->
-        <section class="about-hero">
-            <div class="max-w-6xl">
-                <p class="text-label mb-6 reveal-fade">Est. 2026 — Slovenia</p>
-                <h1 class="heading-massive reveal parallax-text">
-                    The <span class="gold">Studio</span>
-                </h1>
-            </div>
-        </section>
+    <section>
+        <h2 class="section-title">Who We <span class="gold">Are</span></h2>
+        <p class="section-text">Blind Dragon Studios is a Triple-I (Independent, Immersive, Intense) game studio specializing in atmospheric horror experiences. We believe that true horror doesn't rely on jump scares—it builds through atmosphere, anticipation, and the fear of what you cannot see.</p>
+        <p class="section-text">Our team consists of passionate creators who share a common vision: to craft games that linger in your mind long after you've stopped playing.</p>
+    </section>
 
-        <!-- Magazine Layout Section 1 -->
-        <section class="magazine-layout">
-            <div class="magazine-cell reveal-left">
-                <p class="text-label mb-6">Our Origin</p>
-                <h2 class="heading-medium mb-6">
-                    Founded in <span class="gold">2026</span> in the heart of Slovenia
-                </h2>
-                <div class="divider mb-6"></div>
-                <p class="text-body mb-4">
-                    Blind Dragon Studios operates virtually, digging deep into the Karst folklore 
-                    that has shaped our homeland for millennia. Our team is scattered across Europe, 
-                    but our roots remain firmly planted in the limestone caves of the Slovenian Karst.
-                </p>
-                <p class="text-body">
-                    We prioritize <strong class="gold">atmosphere over action</strong>. We are high-fidelity. 
-                    We are Triple-I: Independent, Immersive, Intense.
-                </p>
+    <section>
+        <h2 class="section-title">Our <span class="gold">Values</span></h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <h3>Atmosphere Over Action</h3>
+                <p>We craft worlds where tension builds naturally through environmental storytelling and audio design.</p>
             </div>
-            
-            <div class="magazine-cell image-cell reveal-right">
-                <div class="magazine-image-placeholder">
-                    <img src="icon.png" alt="Blind Dragon" class="w-24 h-24 opacity-15">
-                </div>
+            <div class="value-card">
+                <h3>Player Experience First</h3>
+                <p>Every decision is made with the player's emotional journey in mind.</p>
             </div>
-        </section>
+            <div class="value-card">
+                <h3>Quality Over Quantity</h3>
+                <p>We'd rather release one exceptional experience than ten forgettable ones.</p>
+            </div>
+            <div class="value-card">
+                <h3>Community Driven</h3>
+                <p>Our Vanguard community shapes development from the earliest stages.</p>
+            </div>
+        </div>
+    </section>
 
-        <!-- Quote Block -->
-        <section class="section">
-            <div class="max-w-4xl mx-auto">
-                <div class="quote-block reveal">
-                    <p class="quote-text">
-                        In the darkness, we found clarity. In the silence, we heard stories 
-                        that had waited centuries to be told. We didn't choose horror—
-                        horror chose us.
-                    </p>
-                    <p class="quote-author">— Founding Manifesto, 2026</p>
+    <section>
+        <h2 class="section-title">Our <span class="gold">Journey</span></h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">2026</div>
+                <div class="timeline-content">
+                    <h3>Studio Founded</h3>
+                    <p>Blind Dragon Studios was established with a singular mission: to create horror experiences that truly terrify.</p>
                 </div>
             </div>
-        </section>
+            <div class="timeline-item">
+                <div class="timeline-year">2026</div>
+                <div class="timeline-content">
+                    <h3>First Project Announced</h3>
+                    <p>Development begins on our debut title, pushing the boundaries of atmospheric horror.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2027</div>
+                <div class="timeline-content">
+                    <h3>The Future</h3>
+                    <p>Stay tuned. The depths have only just begun to reveal their secrets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Magazine Layout Section 2 -->
-        <section class="magazine-layout">
-            <div class="magazine-cell image-cell reveal-left">
-                <div class="magazine-image-placeholder">
-                    <div class="absolute inset-0 bg-gradient-to-br from-transparent via-cave-black to-transparent"></div>
-                    <div class="relative z-10 text-center">
-                        <div class="heading-massive gold opacity-10">III</div>
-                        <p class="text-label mt-4">Triple-I</p>
-                    </div>
-                </div>
+    <footer>
+        <div class="footer-content">
+            <img src="icon.png" alt="Blind Dragon" style="height: 35px;">
+            <div class="footer-links">
+                <a href="https://discord.gg/X853nZYY9F" target="_blank">Discord</a>
+                <a href="#">Twitter</a>
+                <a href="#">YouTube</a>
             </div>
-            
-            <div class="magazine-cell reveal-right">
-                <p class="text-label mb-6">Our Philosophy</p>
-                <h2 class="heading-medium mb-6">
-                    Triple-<span class="gold">I</span> Development
-                </h2>
-                <div class="divider mb-6"></div>
-                <div class="space-y-6">
-                    <div>
-                        <h3 class="heading-small mb-2"><span class="gold">I</span>ndependent</h3>
-                        <p class="text-body">
-                            No publishers, no compromises. We answer only to our vision and our community.
-                        </p>
-                    </div>
-                    <div>
-                        <h3 class="heading-small mb-2"><span class="gold">I</span>mmersive</h3>
-                        <p class="text-body">
-                            Every detail serves the atmosphere. We build worlds that consume you completely.
-                        </p>
-                    </div>
-                    <div>
-                        <h3 class="heading-small mb-2"><span class="gold">I</span>ntense</h3>
-                        <p class="text-body">
-                            Our experiences leave marks. We don't make games you play—we make games that haunt you.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Values Grid -->
-        <section class="section-full py-24">
-            <div class="max-w-7xl mx-auto px-4">
-                <div class="text-center mb-16">
-                    <p class="text-label mb-4 reveal">What Guides Us</p>
-                    <h2 class="heading-large reveal parallax-text">Core <span class="gold">Values</span></h2>
-                </div>
-                
-                <div class="values-grid cards-stagger">
-                    <div class="value-cell card">
-                        <div class="value-number">01</div>
-                        <h3 class="value-title">Atmosphere First</h3>
-                        <p class="value-text">
-                            Every frame, every sound, every moment of silence serves the greater 
-                            tapestry of dread we're weaving.
-                        </p>
-                    </div>
-                    
-                    <div class="value-cell card">
-                        <div class="value-number">02</div>
-                        <h3 class="value-title">Quality Over Speed</h3>
-                        <p class="value-text">
-                            We take the time needed to craft experiences that meet our exacting 
-                            standards. No crunch, no shortcuts.
-                        </p>
-                    </div>
-                    
-                    <div class="value-cell card">
-                        <div class="value-number">03</div>
-                        <h3 class="value-title">Community Driven</h3>
-                        <p class="value-text">
-                            Our Vanguard community shapes our direction. We build with our 
-                            players, not just for them.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Section -->
-        <section class="team-section">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div class="reveal-left">
-                        <p class="text-label mb-6">The Collective</p>
-                        <h2 class="heading-large mb-6">
-                            A <span class="gold">Virtual</span> Team,<br>
-                            A Singular Vision
-                        </h2>
-                        <div class="divider mb-6"></div>
-                        <p class="text-body mb-6">
-                            We're a distributed team of artists, developers, writers, and sound 
-                            designers united by a shared obsession with atmospheric horror. 
-                            We communicate across time zones, collaborate across borders, and 
-                            create experiences that transcend language.
-                        </p>
-                        <p class="text-body">
-                            Interested in joining the dragon's hoard? We're always looking for 
-                            exceptional talent that shares our vision.
-                        </p>
-                        <a href="https://discord.gg/X853nZYY9F" target="_blank" class="btn btn-outline btn-magnetic mt-8 inline-flex">
-                            <span class="btn-text">Contact Us on Discord</span>
-                        </a>
-                    </div>
-                    
-                    <div class="reveal-right">
-                        <div class="bento-grid grid-cols-2 gap-px">
-                            <div class="bento-cell card aspect-square flex items-center justify-center">
-                                <div class="text-center">
-                                    <div class="heading-large gold">5+</div>
-                                    <p class="text-small muted mt-2">Core Team</p>
-                                </div>
-                            </div>
-                            <div class="bento-cell card aspect-square flex items-center justify-center">
-                                <div class="text-center">
-                                    <div class="heading-large gold">3</div>
-                                    <p class="text-small muted mt-2">Countries</p>
-                                </div>
-                            </div>
-                            <div class="bento-cell card aspect-square flex items-center justify-center">
-                                <div class="text-center">
-                                    <div class="heading-large gold">1</div>
-                                    <p class="text-small muted mt-2">Vision</p>
-                                </div>
-                            </div>
-                            <div class="bento-cell card aspect-square flex items-center justify-center">
-                                <div class="text-center">
-                                    <div class="heading-large gold">∞</div>
-                                    <p class="text-small muted mt-2">Dedication</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="section">
-            <div class="section-content text-center">
-                <div class="max-w-3xl mx-auto">
-                    <p class="text-label mb-6 reveal">Be Part of the Journey</p>
-                    <h2 class="heading-large mb-6 reveal parallax-text">
-                        Join the <span class="gold">Vanguard</span>
-                    </h2>
-                    <p class="text-body mb-10 max-w-xl mx-auto reveal">
-                        Get exclusive access to development updates, behind-the-scenes content, 
-                        and direct communication with the team.
-                    </p>
-                    <div class="reveal-scale">
-                        <a href="https://discord.gg/X853nZYY9F" target="_blank" class="btn btn-primary btn-magnetic inline-flex">
-                            <span class="btn-text">Enter the Discord</span>
-                            <span class="btn-shine"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="icon.png" alt="Blind Dragon Studios">
-                </div>
-                
-                <div class="footer-links">
-                    <a href="https://discord.gg/X853nZYY9F" target="_blank" class="footer-link">Discord</a>
-                    <a href="#" class="footer-link">Twitter</a>
-                    <a href="#" class="footer-link">YouTube</a>
-                    <a href="#" class="footer-link">Press Kit</a>
-                </div>
-                
-                <p class="footer-copyright">
-                    © 2026 Blind Dragon Studios. All rights reserved.
-                </p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- ============================================
-         SCRIPTS
-    ============================================ -->
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
-    <!-- GSAP + ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
-    <!-- Lenis Smooth Scroll -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    
-    <!-- Shared Script -->
-    <script src="script.js"></script>
+            <p class="copyright">© 2026 Blind Dragon Studios</p>
+        </div>
+    </footer>
 </body>
 </html>

@@ -3,687 +3,332 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | Blind Dragon Studios</title>
-    
-    <!-- Favicon -->
+    <title>Projects - Blind Dragon Studios</title>
     <link rel="icon" type="image/png" href="icon.png">
-    <link rel="apple-touch-icon" href="icon.png">
-    
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Shared Styles -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Page-Specific Styles -->
     <style>
-        .projects-hero {
-            min-height: 50vh;
-            display: flex;
-            align-items: flex-end;
-            padding: 8rem 4rem 4rem;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --black: #050505;
+            --white: #f5f5f0;
+            --gold: #D4AF37;
+            --gray: rgba(245, 245, 240, 0.5);
         }
         
-        /* Featured Project - Poster Style */
-        .featured-project {
-            min-height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
+        html { scroll-behavior: smooth; }
         
-        .featured-bg {
-            position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 50%, rgba(5, 80, 120, 0.02) 0%, transparent 50%),
-                linear-gradient(180deg, var(--cave-black) 0%, var(--cave-deep) 50%, var(--cave-black) 100%);
-        }
-        
-        .featured-content {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .project-poster {
-            position: relative;
-            aspect-ratio: 2/3;
-            background: linear-gradient(180deg, 
-                rgba(5, 80, 120, 0.1) 0%, 
-                var(--cave-black) 30%,
-                var(--cave-deep) 70%,
-                rgba(212, 175, 55, 0.05) 100%
-            );
-            border: 1px solid var(--grid-line);
-            overflow: hidden;
-        }
-        
-        .project-poster::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(ellipse at 50% 100%, rgba(5, 80, 120, 0.15) 0%, transparent 60%),
-                linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.8) 100%);
-        }
-        
-        .project-poster::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 200px;
-            height: 200px;
-            transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
-            animation: pulse-glow 4s ease-in-out infinite;
-        }
-        
-        @keyframes pulse-glow {
-            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.2); }
-        }
-        
-        .poster-title {
-            position: absolute;
-            bottom: 2rem;
-            left: 2rem;
-            right: 2rem;
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            text-align: center;
-            z-index: 1;
-        }
-        
-        .poster-eyebrow {
-            position: absolute;
-            top: 2rem;
-            left: 2rem;
-            font-size: 0.6rem;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: var(--fossil-gold);
-            z-index: 1;
-        }
-        
-        .poster-status {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            font-size: 0.55rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--grid-line);
-            z-index: 1;
-        }
-        
-        .project-info {
-            padding: 2rem 0;
-        }
-        
-        .project-tag {
-            display: inline-block;
-            font-size: 0.6rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--grid-line);
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: var(--grid-line);
-            margin-top: 4rem;
-        }
-        
-        .feature-cell {
-            background: var(--cave-black);
-            padding: 2.5rem 2rem;
-            text-align: center;
-            transition: all 0.4s ease;
-        }
-        
-        .feature-cell:hover {
-            background: rgba(212, 175, 55, 0.02);
-        }
-        
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--fossil-gold);
-            opacity: 0.6;
-        }
-        
-        .feature-title {
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            margin-bottom: 0.75rem;
-            color: var(--bone-white);
-        }
-        
-        .feature-text {
-            font-size: 0.75rem;
-            color: var(--text-muted);
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
             line-height: 1.6;
         }
         
-        /* Horizontal Parallax Section */
-        .horizontal-section {
-            overflow: hidden;
-            padding: 6rem 0;
-        }
-        
-        .horizontal-track {
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 3rem;
             display: flex;
-            gap: 2rem;
-            padding: 0 4rem;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(5,5,5,0.95), transparent);
         }
         
-        .horizontal-slide {
-            flex-shrink: 0;
-            width: 400px;
-            aspect-ratio: 16/10;
-            background: var(--cave-deep);
-            border: 1px solid var(--grid-line);
-            position: relative;
-            overflow: hidden;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--white);
         }
         
-        .horizontal-slide::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
-        }
+        .logo img { height: 40px; }
         
-        .slide-number {
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
+        .logo span {
             font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            color: rgba(212, 175, 55, 0.2);
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
         }
         
-        .slide-title {
-            position: absolute;
-            bottom: 1.5rem;
-            left: 1.5rem;
-            right: 1.5rem;
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            color: var(--bone-white);
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
         }
         
-        /* Coming Soon Section */
-        .coming-soon {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1px;
-            background: var(--grid-line);
+        .nav-links a {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
         }
         
-        .coming-soon-card {
-            background: var(--cave-black);
-            padding: 4rem;
-            position: relative;
-            min-height: 300px;
+        .nav-links a:hover { color: var(--white); }
+        .nav-links a.active { color: var(--gold); }
+        
+        .discord-btn {
+            background: var(--gold);
+            color: var(--black);
+            padding: 0.6rem 1.2rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .discord-btn:hover { background: var(--white); }
+        
+        .page-header {
+            min-height: 50vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            transition: all 0.4s ease;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            border-bottom: 1px solid rgba(212,175,55,0.1);
         }
         
-        .coming-soon-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 50%, rgba(5, 5, 5, 0.9) 100%);
-            z-index: 1;
-        }
-        
-        .coming-soon-card:hover {
-            background: var(--cave-deep);
-        }
-        
-        .coming-soon-number {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            font-family: 'Cinzel', serif;
-            font-size: 4rem;
-            color: rgba(212, 175, 55, 0.08);
-        }
-        
-        .coming-soon-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .coming-soon-status {
-            font-size: 0.6rem;
+        .section-label {
+            font-size: 0.65rem;
             letter-spacing: 0.3em;
             text-transform: uppercase;
-            color: var(--fossil-gold);
+            color: var(--gold);
             margin-bottom: 1rem;
         }
         
-        .coming-soon-title {
+        .page-title {
             font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: var(--bone-white);
-            margin-bottom: 0.75rem;
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 400;
         }
         
-        .coming-soon-text {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            line-height: 1.7;
+        .page-title .gold { color: var(--gold); }
+        
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        @media (max-width: 1024px) {
-            .featured-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                padding: 3rem 2rem;
-            }
-            
-            .project-poster {
-                max-width: 400px;
-                margin: 0 auto;
-            }
-            
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .coming-soon {
-                grid-template-columns: 1fr;
-            }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            border: 1px solid rgba(212,175,55,0.15);
+            padding: 3rem 2rem;
+            transition: all 0.3s;
+        }
+        
+        .project-card:hover {
+            border-color: rgba(212,175,55,0.4);
+        }
+        
+        .project-status {
+            display: inline-block;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .status-dev {
+            background: rgba(212,175,55,0.15);
+            color: var(--gold);
+        }
+        
+        .status-coming {
+            background: rgba(245,245,240,0.1);
+            color: var(--gray);
+        }
+        
+        .project-card h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-card h2 .gold { color: var(--gold); }
+        
+        .project-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid rgba(212,175,55,0.2);
+            color: var(--gray);
+        }
+        
+        .cta {
+            text-align: center;
+            padding: 6rem 2rem;
+            border-top: 1px solid rgba(212,175,55,0.1);
+        }
+        
+        .cta-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-title .gold { color: var(--gold); }
+        
+        .cta-text {
+            color: var(--gray);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: var(--gold);
+            color: var(--black);
+            transition: all 0.3s;
+        }
+        
+        .btn:hover { background: var(--white); }
+        
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(212,175,55,0.1);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-links a {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover { color: var(--gold); }
+        
+        .copyright {
+            font-size: 0.65rem;
+            color: rgba(245,245,240,0.3);
         }
         
         @media (max-width: 768px) {
-            .projects-hero {
-                padding: 6rem 2rem 3rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .horizontal-slide {
-                width: 300px;
-            }
-            
-            .horizontal-track {
-                padding: 0 1.5rem;
-            }
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            .logo span { display: none; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; text-align: center; }
         }
     </style>
-    
-    <!-- Tailwind Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'cave-black': '#050505',
-                        'cave-deep': '#0a0a0a',
-                        'bone-white': '#F5F5F0',
-                        'fossil-gold': '#D4AF37',
-                    },
-                    fontFamily: {
-                        'cinzel': ['Cinzel', 'serif'],
-                        'montserrat': ['Montserrat', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
 </head>
 <body>
-    <!-- ============================================
-         PAGE TRANSITION
-    ============================================ -->
-    <div class="page-transition"></div>
-
-    <!-- ============================================
-         NOISE OVERLAY
-    ============================================ -->
-    <div class="noise-overlay"></div>
-
-    <!-- ============================================
-         GRID OVERLAY
-    ============================================ -->
-    <div class="grid-overlay"></div>
-
-    <!-- ============================================
-         CUSTOM CURSOR
-    ============================================ -->
-    <div class="cursor"></div>
-    <div class="cursor-glow"></div>
-
-    <!-- ============================================
-         THREE.JS CANVAS
-    ============================================ -->
-    <canvas id="three-canvas"></canvas>
-
-    <!-- ============================================
-         NAVIGATION
-    ============================================ -->
-    <nav class="nav">
-        <a href="index.html" class="nav-logo">
-            <img src="icon.png" alt="Blind Dragon Studios">
-            <span class="nav-logo-text hidden md:block">BLIND DRAGON</span>
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="icon.png" alt="Blind Dragon">
+            <span>BLIND DRAGON</span>
         </a>
-        
         <div class="nav-links">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">The Studio</a>
-            <a href="projects.html" class="nav-link active">Projects</a>
+            <a href="index.html">Home</a>
+            <a href="about.html">Studio</a>
+            <a href="projects.html" class="active">Projects</a>
+            <a href="https://discord.gg/X853nZYY9F" target="_blank" class="discord-btn">Enter Discord</a>
         </div>
-        
-        <a href="https://discord.gg/X853nZYY9F" target="_blank" class="nav-cta">Enter Discord</a>
-        
-        <button class="nav-toggle" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
     </nav>
 
-    <!-- Mobile Navigation -->
-    <div class="nav-mobile">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="about.html" class="nav-link">The Studio</a>
-        <a href="projects.html" class="nav-link active">Projects</a>
-        <a href="https://discord.gg/X853nZYY9F" target="_blank" class="nav-cta">Enter Discord</a>
-    </div>
+    <header class="page-header">
+        <p class="section-label">Our Work</p>
+        <h1 class="page-title">Current <span class="gold">Projects</span></h1>
+    </header>
 
-    <!-- ============================================
-         MAIN CONTENT
-    ============================================ -->
-    <div class="content">
-        <!-- Projects Hero -->
-        <section class="projects-hero">
-            <div class="max-w-6xl">
-                <p class="text-label mb-6 reveal-fade">Our Creations</p>
-                <h1 class="heading-massive reveal parallax-text">
-                    The <span class="gold">Games</span>
-                </h1>
-            </div>
-        </section>
-
-        <!-- Featured Project -->
-        <section class="featured-project">
-            <div class="featured-bg"></div>
-            
-            <div class="featured-content">
-                <div class="project-poster reveal-left">
-                    <span class="poster-eyebrow">Featured Project</span>
-                    <span class="poster-status">In Development</span>
-                    
-                    <!-- Abstract cave visualization -->
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="relative w-48 h-48">
-                            <!-- Concentric cave rings -->
-                            <div class="absolute inset-0 rounded-full border border-fossil-gold/5 animate-pulse"></div>
-                            <div class="absolute inset-4 rounded-full border border-fossil-gold/10"></div>
-                            <div class="absolute inset-8 rounded-full border border-fossil-gold/15"></div>
-                            <div class="absolute inset-12 rounded-full border border-fossil-gold/20"></div>
-                            <div class="absolute inset-16 rounded-full bg-gradient-to-b from-blue-900/20 to-cave-black"></div>
-                        </div>
-                    </div>
-                    
-                    <h3 class="poster-title">
-                        SILENT<br><span class="gold">DEPTH</span>
-                    </h3>
+    <section>
+        <div class="projects-grid">
+            <div class="project-card">
+                <span class="project-status status-dev">In Development</span>
+                <h2>Project <span class="gold">Depths</span></h2>
+                <p>Our debut title—a first-person psychological horror experience set in an abandoned underground research facility. Uncover the truth of what was unearthed in the darkness below.</p>
+                <div class="project-tags">
+                    <span class="tag">Horror</span>
+                    <span class="tag">UE5</span>
+                    <span class="tag">Single Player</span>
+                    <span class="tag">First Person</span>
                 </div>
-                
-                <div class="project-info reveal-right">
-                    <p class="text-label mb-4">Project: Silent Depth</p>
-                    <h2 class="heading-large mb-6">
-                        The Caves <span class="gold">Remember</span>
-                    </h2>
-                    <div class="divider mb-6"></div>
-                    
-                    <p class="text-body mb-6">
-                        A psychological first-person walking simulator set in the endless tunnels 
-                        of a flooded cave system beneath the Slovenian Karst. Photorealistic graphics 
-                        powered by Unreal Engine 5. Non-Euclidean geometry that defies logic. 
-                    </p>
-                    
-                    <p class="text-body mb-6">
-                        <strong class="gold">You are not alone.</strong>
-                    </p>
-                    
-                    <p class="text-body mb-8">
-                        Something ancient stirs in the flooded depths. Something that has waited 
-                        millennia for you to descend. The deeper you go, the more the caves 
-                        twist—and the more you begin to question what's real.
-                    </p>
-                    
-                    <div class="flex flex-wrap mb-8">
-                        <span class="project-tag">Psychological Horror</span>
-                        <span class="project-tag">Walking Simulator</span>
-                        <span class="project-tag">UE5</span>
-                        <span class="project-tag">Single Player</span>
-                        <span class="project-tag">PC</span>
-                    </div>
-                    
-                    <a href="https://discord.gg/X853nZYY9F" target="_blank" class="btn btn-primary btn-magnetic inline-flex">
-                        <span class="btn-text">Follow Development</span>
-                        <span class="btn-shine"></span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Grid -->
-        <section class="section-full">
-            <div class="features-grid cards-stagger">
-                <div class="feature-cell card">
-                    <div class="feature-icon">◈</div>
-                    <h4 class="feature-title">Photorealistic</h4>
-                    <p class="feature-text">
-                        UE5's Nanite & Lumen create caves indistinguishable from reality
-                    </p>
-                </div>
-                
-                <div class="feature-cell card">
-                    <div class="feature-icon">◇</div>
-                    <h4 class="feature-title">Non-Euclidean</h4>
-                    <p class="feature-text">
-                        Impossible geometry that breaks your understanding of space
-                    </p>
-                </div>
-                
-                <div class="feature-cell card">
-                    <div class="feature-icon">◐</div>
-                    <h4 class="feature-title">Binaural Audio</h4>
-                    <p class="feature-text">
-                        3D soundscapes that make you feel the cave breathing
-                    </p>
-                </div>
-                
-                <div class="feature-cell card">
-                    <div class="feature-icon">◉</div>
-                    <h4 class="feature-title">Slow Burn</h4>
-                    <p class="feature-text">
-                        Atmospheric dread that builds over hours, not minutes
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Horizontal Parallax Gallery -->
-        <section class="horizontal-section">
-            <div class="max-w-6xl mx-auto px-4 mb-12">
-                <p class="text-label mb-4 reveal">Development Gallery</p>
-                <h2 class="heading-medium reveal">Glimpses of the <span class="gold">Depths</span></h2>
             </div>
             
-            <div class="horizontal-track" id="horizontal-track">
-                <div class="horizontal-slide reveal-scale">
-                    <div class="slide-number">01</div>
-                    <div class="slide-title">The Entrance</div>
-                </div>
-                <div class="horizontal-slide reveal-scale">
-                    <div class="slide-number">02</div>
-                    <div class="slide-title">Flooded Tunnels</div>
-                </div>
-                <div class="horizontal-slide reveal-scale">
-                    <div class="slide-number">03</div>
-                    <div class="slide-title">The Cathedral</div>
-                </div>
-                <div class="horizontal-slide reveal-scale">
-                    <div class="slide-number">04</div>
-                    <div class="slide-title">Ancient Markings</div>
-                </div>
-                <div class="horizontal-slide reveal-scale">
-                    <div class="slide-number">05</div>
-                    <div class="slide-title">The Presence</div>
+            <div class="project-card">
+                <span class="project-status status-coming">Coming Soon</span>
+                <h2>Project <span class="gold">Hollow</span></h2>
+                <p>Something ancient waits. Details will emerge from the shadows when the time is right. Join the Vanguard for early reveals.</p>
+                <div class="project-tags">
+                    <span class="tag">Horror</span>
+                    <span class="tag">???</span>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Coming Soon Section -->
-        <section class="section-full py-24">
-            <div class="max-w-7xl mx-auto px-4">
-                <div class="text-center mb-16">
-                    <p class="text-label mb-4 reveal">What's Next</p>
-                    <h2 class="heading-large reveal parallax-text">Future <span class="gold">Projects</span></h2>
-                </div>
-                
-                <div class="coming-soon">
-                    <div class="coming-soon-card card reveal-left">
-                        <div class="coming-soon-number">02</div>
-                        <div class="coming-soon-content">
-                            <p class="coming-soon-status">Concept Phase</p>
-                            <h3 class="coming-soon-title">Project: Hollow Mountain</h3>
-                            <p class="coming-soon-text">
-                                A narrative horror experience set in an abandoned alpine research facility. 
-                                Something was discovered in the ice. Something that should have stayed frozen.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="coming-soon-card card reveal-right">
-                        <div class="coming-soon-number">03</div>
-                        <div class="coming-soon-content">
-                            <p class="coming-soon-status">Early Concept</p>
-                            <h3 class="coming-soon-title">Project: Salt & Bone</h3>
-                            <p class="coming-soon-text">
-                                Folk horror meets cosmic dread in the salt mines of the Adriatic. 
-                                Where the miners went too deep, and found what waited below.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+    <section class="cta">
+        <p class="section-label">Stay Updated</p>
+        <h2 class="cta-title">Want <span class="gold">Early Access</span>?</h2>
+        <p class="cta-text">Join the Vanguard on Discord to get exclusive dev updates, behind-the-scenes content, and first access to playable builds.</p>
+        <a href="https://discord.gg/X853nZYY9F" target="_blank" class="btn">Join the Vanguard</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <img src="icon.png" alt="Blind Dragon" style="height: 35px;">
+            <div class="footer-links">
+                <a href="https://discord.gg/X853nZYY9F" target="_blank">Discord</a>
+                <a href="#">Twitter</a>
+                <a href="#">YouTube</a>
             </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="section">
-            <div class="section-content text-center">
-                <div class="max-w-3xl mx-auto">
-                    <p class="text-label mb-6 reveal">Stay Updated</p>
-                    <h2 class="heading-large mb-6 reveal parallax-text">
-                        Join the <span class="gold">Vanguard</span>
-                    </h2>
-                    <p class="text-body mb-10 max-w-xl mx-auto reveal">
-                        Be the first to see new screenshots, development logs, and behind-the-scenes 
-                        content. Help shape our games from the earliest stages.
-                    </p>
-                    <div class="reveal-scale">
-                        <a href="https://discord.gg/X853nZYY9F" target="_blank" class="btn btn-primary btn-magnetic inline-flex">
-                            <span class="btn-text">Enter the Discord</span>
-                            <span class="btn-shine"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="icon.png" alt="Blind Dragon Studios">
-                </div>
-                
-                <div class="footer-links">
-                    <a href="https://discord.gg/X853nZYY9F" target="_blank" class="footer-link">Discord</a>
-                    <a href="#" class="footer-link">Twitter</a>
-                    <a href="#" class="footer-link">YouTube</a>
-                    <a href="#" class="footer-link">Press Kit</a>
-                </div>
-                
-                <p class="footer-copyright">
-                    © 2026 Blind Dragon Studios. All rights reserved.
-                </p>
-            </div>
-        </footer>
-    </div>
-
-    <!-- ============================================
-         SCRIPTS
-    ============================================ -->
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
-    <!-- GSAP + ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
-    <!-- Lenis Smooth Scroll -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    
-    <!-- Shared Script -->
-    <script src="script.js"></script>
-    
-    <!-- Page-Specific: Horizontal Scroll -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Horizontal parallax scroll for gallery
-            const track = document.getElementById('horizontal-track');
-            if (track) {
-                gsap.to(track, {
-                    x: () => -(track.scrollWidth - window.innerWidth + 100),
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: '.horizontal-section',
-                        start: 'top center',
-                        end: () => `+=${track.scrollWidth - window.innerWidth}`,
-                        scrub: 1,
-                        pin: false
-                    }
-                });
-            }
-        });
-    </script>
+            <p class="copyright">© 2026 Blind Dragon Studios</p>
+        </div>
+    </footer>
 </body>
 </html>
