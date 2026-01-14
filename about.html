@@ -3,322 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about Blind Dragon Studios—an independent team crafting slow-burn, atmospheric horror games.">
     <title>About - Blind Dragon Studios</title>
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --black: #050505;
-            --white: #f5f5f0;
-            --gold: #D4AF37;
-            --gray: rgba(245, 245, 240, 0.5);
-        }
-        
-        html { scroll-behavior: smooth; }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--black);
-            color: var(--white);
-            line-height: 1.6;
-        }
-        
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1.5rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to bottom, rgba(5,5,5,0.95), transparent);
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
-            color: var(--white);
-        }
-        
-        .logo img { height: 40px; }
-        
-        .logo span {
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            letter-spacing: 0.2em;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--gray);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover { color: var(--white); }
-        .nav-links a.active { color: var(--gold); }
-        
-        .discord-btn {
-            background: var(--gold);
-            color: var(--black);
-            padding: 0.6rem 1.2rem;
-            font-size: 0.65rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .discord-btn:hover { background: var(--white); }
-        
-        .page-header {
-            min-height: 50vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-            border-bottom: 1px solid rgba(212,175,55,0.1);
-        }
-        
-        .section-label {
-            font-size: 0.65rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-        
-        .page-title {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 6vw, 4rem);
-            font-weight: 400;
-        }
-        
-        .page-title .gold { color: var(--gold); }
-        
-        section {
-            padding: 5rem 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-        }
-        
-        .section-title .gold { color: var(--gold); }
-        
-        .section-text {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-            max-width: 700px;
-        }
-        
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .value-card {
-            border: 1px solid rgba(212,175,55,0.1);
-            padding: 2rem;
-        }
-        
-        .value-card h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-            color: var(--gold);
-        }
-        
-        .value-card p {
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-        
-        .timeline {
-            margin-top: 3rem;
-        }
-        
-        .timeline-item {
-            display: flex;
-            gap: 2rem;
-            padding: 2rem 0;
-            border-bottom: 1px solid rgba(212,175,55,0.1);
-        }
-        
-        .timeline-year {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: var(--gold);
-            min-width: 100px;
-        }
-        
-        .timeline-content h3 {
-            font-family: 'Cinzel', serif;
-            margin-bottom: 0.5rem;
-        }
-        
-        .timeline-content p {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
-        footer {
-            padding: 3rem 2rem;
-            border-top: 1px solid rgba(212,175,55,0.1);
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .footer-links a {
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--gray);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover { color: var(--gold); }
-        
-        .copyright {
-            font-size: 0.65rem;
-            color: rgba(245,245,240,0.3);
-        }
-        
-        @media (max-width: 768px) {
-            nav { padding: 1rem 1.5rem; }
-            .nav-links { display: none; }
-            .logo span { display: none; }
-            .timeline-item { flex-direction: column; gap: 0.5rem; }
-            .timeline-year { min-width: auto; }
-            .footer-content { flex-direction: column; text-align: center; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="logo">
-            <img src="icon.png" alt="Blind Dragon">
-            <span>BLIND DRAGON</span>
-        </a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html" class="active">Studio</a>
-            <a href="projects.html">Projects</a>
-            <a href="https://discord.gg/X853nZYY9F" target="_blank" class="discord-btn">Enter Discord</a>
+    <nav class="site-nav" aria-label="Primary">
+        <div class="container nav-inner">
+            <a href="index.html" class="brand">
+                <img src="icon.png" alt="Blind Dragon Studios">
+                <span>BLIND DRAGON</span>
+            </a>
+
+            <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">
+                <span class="sr-only">Toggle navigation</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <div id="primary-nav" class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html" aria-current="page">Studio</a>
+                <a href="projects.html">Projects</a>
+                <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener" class="btn btn-primary">Join Discord</a>
+            </div>
         </div>
     </nav>
 
     <header class="page-header">
-        <p class="section-label">About the Studio</p>
-        <h1 class="page-title">The <span class="gold">Vision</span></h1>
+        <div class="container">
+            <p class="kicker">About the studio</p>
+            <h1 class="page-title">Built for <span class="gold">dread</span>.</h1>
+        </div>
     </header>
 
-    <section>
-        <h2 class="section-title">Who We <span class="gold">Are</span></h2>
-        <p class="section-text">Blind Dragon Studios is a Triple-I (Independent, Immersive, Intense) game studio specializing in atmospheric horror experiences. We believe that true horror doesn't rely on jump scares—it builds through atmosphere, anticipation, and the fear of what you cannot see.</p>
-        <p class="section-text">Our team consists of passionate creators who share a common vision: to craft games that linger in your mind long after you've stopped playing.</p>
-    </section>
-
-    <section>
-        <h2 class="section-title">Our <span class="gold">Values</span></h2>
-        <div class="values-grid">
-            <div class="value-card">
-                <h3>Atmosphere Over Action</h3>
-                <p>We craft worlds where tension builds naturally through environmental storytelling and audio design.</p>
-            </div>
-            <div class="value-card">
-                <h3>Player Experience First</h3>
-                <p>Every decision is made with the player's emotional journey in mind.</p>
-            </div>
-            <div class="value-card">
-                <h3>Quality Over Quantity</h3>
-                <p>We'd rather release one exceptional experience than ten forgettable ones.</p>
-            </div>
-            <div class="value-card">
-                <h3>Community Driven</h3>
-                <p>Our Vanguard community shapes development from the earliest stages.</p>
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Who we <span class="gold">are</span></h2>
+                <p class="section-text">Blind Dragon Studios is an independent team building atmospheric horror games. Our goal is simple: create tension you can feel, and worlds you want to explore even when you’re not sure you should.</p>
+                <p class="section-text">We don’t chase constant jump scares. We care about pacing, mood, and the uncomfortable question of what’s just out of sight.</p>
             </div>
         </div>
     </section>
 
-    <section>
-        <h2 class="section-title">Our <span class="gold">Journey</span></h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-year">2026</div>
-                <div class="timeline-content">
-                    <h3>Studio Founded</h3>
-                    <p>Blind Dragon Studios was established with a singular mission: to create horror experiences that truly terrify.</p>
-                </div>
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What we <span class="gold">value</span></h2>
+                <p class="section-text">A few principles we use to make decisions—whether it’s a feature, a scene, or the final mix.</p>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2026</div>
-                <div class="timeline-content">
-                    <h3>First Project Announced</h3>
-                    <p>Development begins on our debut title, pushing the boundaries of atmospheric horror.</p>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>Atmosphere over noise</h3>
+                    <p>We build tension through space, lighting, and sound—not constant action.</p>
                 </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2027</div>
-                <div class="timeline-content">
-                    <h3>The Future</h3>
-                    <p>Stay tuned. The depths have only just begun to reveal their secrets.</p>
+                <div class="value-card">
+                    <h3>Player experience first</h3>
+                    <p>Every choice is measured against what the player feels in the moment.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Care > content</h3>
+                    <p>We’d rather ship something memorable than something rushed.</p>
+                </div>
+                <div class="value-card">
+                    <h3>Community feedback</h3>
+                    <p>Our Discord helps us iterate early—when changes still matter.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="footer-content">
-            <img src="icon.png" alt="Blind Dragon" style="height: 35px;">
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our <span class="gold">timeline</span></h2>
+                <p class="section-text">We’re early in the journey—but we’re building steadily and sharing progress as we go.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2026</div>
+                    <div class="timeline-content">
+                        <h3>Studio founded</h3>
+                        <p>Blind Dragon Studios officially kicks off with a small team and a big focus: make slow-burn horror done right.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2026</div>
+                    <div class="timeline-content">
+                        <h3>Debut project begins</h3>
+                        <p>Pre-production and prototyping start—nailing the tone, the audio, and the first playable slice.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2027</div>
+                    <div class="timeline-content">
+                        <h3>Community playtests</h3>
+                        <p>We’ll invite the Vanguard in for feedback, polish passes, and early builds as the project gets closer.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <img src="icon.png" alt="Blind Dragon Studios">
+                <span class="sr-only">Blind Dragon Studios</span>
+            </div>
             <div class="footer-links">
-                <a href="https://discord.gg/X853nZYY9F" target="_blank">Discord</a>
-                <a href="#">Twitter</a>
-                <a href="#">YouTube</a>
+                <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener">Discord</a>
+                <a href="https://x.com" target="_blank" rel="noopener">Twitter</a>
+                <a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a>
             </div>
             <p class="copyright">© 2026 Blind Dragon Studios</p>
         </div>
     </footer>
+
+    <script src="site.js" defer></script>
 </body>
 </html>

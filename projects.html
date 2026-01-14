@@ -3,333 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="See what Blind Dragon Studios is working on: atmospheric horror projects in development.">
     <title>Projects - Blind Dragon Studios</title>
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --black: #050505;
-            --white: #f5f5f0;
-            --gold: #D4AF37;
-            --gray: rgba(245, 245, 240, 0.5);
-        }
-        
-        html { scroll-behavior: smooth; }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--black);
-            color: var(--white);
-            line-height: 1.6;
-        }
-        
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1.5rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to bottom, rgba(5,5,5,0.95), transparent);
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
-            color: var(--white);
-        }
-        
-        .logo img { height: 40px; }
-        
-        .logo span {
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            letter-spacing: 0.2em;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--gray);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover { color: var(--white); }
-        .nav-links a.active { color: var(--gold); }
-        
-        .discord-btn {
-            background: var(--gold);
-            color: var(--black);
-            padding: 0.6rem 1.2rem;
-            font-size: 0.65rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .discord-btn:hover { background: var(--white); }
-        
-        .page-header {
-            min-height: 50vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-            border-bottom: 1px solid rgba(212,175,55,0.1);
-        }
-        
-        .section-label {
-            font-size: 0.65rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-        
-        .page-title {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 6vw, 4rem);
-            font-weight: 400;
-        }
-        
-        .page-title .gold { color: var(--gold); }
-        
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        
-        .project-card {
-            border: 1px solid rgba(212,175,55,0.15);
-            padding: 3rem 2rem;
-            transition: all 0.3s;
-        }
-        
-        .project-card:hover {
-            border-color: rgba(212,175,55,0.4);
-        }
-        
-        .project-status {
-            display: inline-block;
-            font-size: 0.6rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            padding: 0.3rem 0.8rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .status-dev {
-            background: rgba(212,175,55,0.15);
-            color: var(--gold);
-        }
-        
-        .status-coming {
-            background: rgba(245,245,240,0.1);
-            color: var(--gray);
-        }
-        
-        .project-card h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-        
-        .project-card h2 .gold { color: var(--gold); }
-        
-        .project-card p {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-        
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        
-        .tag {
-            font-size: 0.6rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            padding: 0.4rem 0.8rem;
-            border: 1px solid rgba(212,175,55,0.2);
-            color: var(--gray);
-        }
-        
-        .cta {
-            text-align: center;
-            padding: 6rem 2rem;
-            border-top: 1px solid rgba(212,175,55,0.1);
-        }
-        
-        .cta-title {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 400;
-            margin-bottom: 1rem;
-        }
-        
-        .cta-title .gold { color: var(--gold); }
-        
-        .cta-text {
-            color: var(--gray);
-            max-width: 500px;
-            margin: 0 auto 2rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            text-decoration: none;
-            background: var(--gold);
-            color: var(--black);
-            transition: all 0.3s;
-        }
-        
-        .btn:hover { background: var(--white); }
-        
-        footer {
-            padding: 3rem 2rem;
-            border-top: 1px solid rgba(212,175,55,0.1);
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .footer-links a {
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--gray);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover { color: var(--gold); }
-        
-        .copyright {
-            font-size: 0.65rem;
-            color: rgba(245,245,240,0.3);
-        }
-        
-        @media (max-width: 768px) {
-            nav { padding: 1rem 1.5rem; }
-            .nav-links { display: none; }
-            .logo span { display: none; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .footer-content { flex-direction: column; text-align: center; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="logo">
-            <img src="icon.png" alt="Blind Dragon">
-            <span>BLIND DRAGON</span>
-        </a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">Studio</a>
-            <a href="projects.html" class="active">Projects</a>
-            <a href="https://discord.gg/X853nZYY9F" target="_blank" class="discord-btn">Enter Discord</a>
+    <nav class="site-nav" aria-label="Primary">
+        <div class="container nav-inner">
+            <a href="index.html" class="brand">
+                <img src="icon.png" alt="Blind Dragon Studios">
+                <span>BLIND DRAGON</span>
+            </a>
+
+            <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">
+                <span class="sr-only">Toggle navigation</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <div id="primary-nav" class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">Studio</a>
+                <a href="projects.html" aria-current="page">Projects</a>
+                <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener" class="btn btn-primary">Join Discord</a>
+            </div>
         </div>
     </nav>
 
     <header class="page-header">
-        <p class="section-label">Our Work</p>
-        <h1 class="page-title">Current <span class="gold">Projects</span></h1>
+        <div class="container">
+            <p class="kicker">Our work</p>
+            <h1 class="page-title">Current <span class="gold">projects</span></h1>
+        </div>
     </header>
 
-    <section>
-        <div class="projects-grid">
-            <div class="project-card">
-                <span class="project-status status-dev">In Development</span>
-                <h2>Project <span class="gold">Depths</span></h2>
-                <p>Our debut title—a first-person psychological horror experience. More soon.</p>
-                <div class="project-tags">
-                    <span class="tag">Horror</span>
-                    <span class="tag">Unity</span>
-                    <span class="tag">Single Player</span>
-                    <span class="tag">First Person</span>
+    <section class="section">
+        <div class="container">
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="project-status status-dev">In development</span>
+                    <h2>Project <span class="gold">The Last Line</span></h2>
+                    <p>A first-person psychological horror experience focused on atmosphere, exploration, and the slow realization that something is learning your patterns.</p>
+                    <div class="project-tags">
+                        <span class="tag">Horror</span>
+                        <span class="tag">Unity</span>
+                        <span class="tag">Single-player</span>
+                        <span class="tag">First-person</span>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="project-card">
-                <span class="project-status status-coming">Coming Soon</span>
-                <h2>Project <span class="gold">Hollow</span></h2>
-                <p>Something ancient waits. Details will emerge from the shadows when the time is right. Join the Vanguard for early reveals.</p>
-                <div class="project-tags">
-                    <span class="tag">Horror</span>
-                    <span class="tag">???</span>
+
+                <div class="project-card">
+                    <span class="project-status status-coming">Announcing soon</span>
+                    <h2>Project <span class="gold">Hollow</span></h2>
+                    <p>Our next concept is in early exploration. We’ll share details once we can show the tone and the hook properly—no vague hype, just real progress.</p>
+                    <div class="project-tags">
+                        <span class="tag">Horror</span>
+                        <span class="tag">TBA</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="cta">
-        <p class="section-label">Stay Updated</p>
-        <h2 class="cta-title">Want <span class="gold">Early Access</span>?</h2>
-        <p class="cta-text">Join the Vanguard on Discord to get exclusive dev updates, behind-the-scenes content, and first access to playable builds.</p>
-        <a href="https://discord.gg/X853nZYY9F" target="_blank" class="btn">Join the Vanguard</a>
+        <div class="container">
+            <p class="kicker">Stay updated</p>
+            <h2 class="cta-title">Want <span class="gold">early access</span>?</h2>
+            <p class="cta-text">Join the Vanguard on Discord for dev updates, behind-the-scenes progress, and playtest opportunities as we get closer to builds we’re proud to share.</p>
+            <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener" class="btn btn-primary">Join Discord</a>
+        </div>
     </section>
 
-    <footer>
-        <div class="footer-content">
-            <img src="icon.png" alt="Blind Dragon" style="height: 35px;">
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <img src="icon.png" alt="Blind Dragon Studios">
+                <span class="sr-only">Blind Dragon Studios</span>
+            </div>
             <div class="footer-links">
-                <a href="https://discord.gg/X853nZYY9F" target="_blank">Discord</a>
-                <a href="#">Twitter</a>
-                <a href="#">YouTube</a>
+                <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener">Discord</a>
+                <a href="https://x.com" target="_blank" rel="noopener">Twitter</a>
+                <a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a>
             </div>
             <p class="copyright">© 2026 Blind Dragon Studios</p>
         </div>
     </footer>
+
+    <script src="site.js" defer></script>
 </body>
 </html>
 
