@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Island Mystery: Death on Saint-Honoré — a Caribbean detective text adventure playable in your browser. By Blind Dragon Studios.">
+    <title>Play Island Mystery – Blind Dragon Studios</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ─── Terminal-specific styles ─── */
+        .terminal-wrapper {
+            padding-top: calc(var(--nav-height) + 2rem);
+            padding-bottom: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .terminal-header {
+            text-align: center;
+            padding: 1.5rem 0 1rem;
+        }
+
+        .terminal-header h1 {
+            font-family: Cinzel, ui-serif, Georgia, serif;
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            font-weight: 400;
+            animation: fade-in-up 0.8s var(--ease-out-expo) both;
+        }
+
+        .terminal-header p {
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-top: 0.4rem;
+            animation: fade-in-up 0.8s var(--ease-out-expo) 0.1s both;
+        }
+
+        .terminal-outer {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 960px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .terminal-frame {
+            flex: 1;
+            border-radius: var(--radius);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            background: #0c0c0c;
+            box-shadow: var(--shadow), 0 0 80px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 70vh;
+            max-height: 85vh;
+        }
+
+        .terminal-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1rem;
+            background: rgba(212, 175, 55, 0.06);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .terminal-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27c93f; }
+
+        .terminal-bar-title {
+            margin-left: 0.5rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted-2);
+        }
+
+        #terminal-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 1.2rem;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.55;
+            color: #e0e0e0;
+            cursor: text;
+        }
+
+        #terminal-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #terminal-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #terminal-container::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 3px;
+        }
+
+        #terminal-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.35);
+        }
+
+        #terminal-output {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .term-line {
+            min-height: 1.55em;
+        }
+
+        /* ANSI color classes */
+        .ansi-bold { font-weight: 700; }
+        .ansi-dim { opacity: 0.6; }
+        .ansi-italic { font-style: italic; }
+        .ansi-under { text-decoration: underline; }
+
+        .ansi-black   { color: #1e1e1e; }
+        .ansi-red     { color: #cd3131; }
+        .ansi-green   { color: #0dbc79; }
+        .ansi-yellow  { color: #e5e510; }
+        .ansi-blue    { color: #2472c8; }
+        .ansi-magenta { color: #bc3fbc; }
+        .ansi-cyan    { color: #11a8cd; }
+        .ansi-white   { color: #e5e5e5; }
+
+        .ansi-bred     { color: #f14c4c; }
+        .ansi-bgreen   { color: #23d18b; }
+        .ansi-byellow  { color: #f5f543; }
+        .ansi-bblue    { color: #3b8eea; }
+        .ansi-bmagenta { color: #d670d6; }
+        .ansi-bcyan    { color: #29b8db; }
+        .ansi-bwhite   { color: #ffffff; }
+
+        .ansi-bg-black   { background: #1e1e1e; }
+        .ansi-bg-red     { background: #cd3131; }
+        .ansi-bg-green   { background: #0dbc79; }
+        .ansi-bg-yellow  { background: #e5e510; }
+        .ansi-bg-blue    { background: #2472c8; }
+        .ansi-bg-magenta { background: #bc3fbc; }
+        .ansi-bg-cyan    { background: #11a8cd; }
+        .ansi-bg-white   { background: #e5e5e5; color: #1e1e1e; }
+
+        /* Input area */
+        #input-form {
+            display: none;
+            align-items: center;
+            padding: 0.5rem 1.2rem 0.75rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.08);
+            background: rgba(0, 0, 0, 0.3);
+            gap: 0.4rem;
+        }
+
+        #prompt-label {
+            font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            color: var(--gold);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        #terminal-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            color: #fff;
+            caret-color: var(--gold);
+            padding: 0.3rem 0;
+        }
+
+        #terminal-input::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Blinking cursor effect */
+        #input-form::after {
+            content: '';
+            display: none;
+        }
+
+        /* Terminal hints */
+        .terminal-hints {
+            text-align: center;
+            padding: 0.75rem 0 0;
+            font-size: 0.7rem;
+            color: var(--muted-2);
+            letter-spacing: 0.08em;
+        }
+
+        .terminal-hints kbd {
+            display: inline-block;
+            padding: 0.15em 0.45em;
+            font-size: 0.7rem;
+            font-family: inherit;
+            color: var(--muted);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .terminal-frame {
+                min-height: 60vh;
+                max-height: 80vh;
+                border-radius: var(--radius-sm);
+            }
+
+            #terminal-container {
+                font-size: 11px;
+                padding: 0.75rem 0.8rem;
+            }
+
+            #terminal-input,
+            #prompt-label {
+                font-size: 11px;
+            }
+
+            .terminal-header h1 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── Navigation ─── -->
+    <nav class="site-nav" aria-label="Primary">
+        <div class="container nav-inner">
+            <a href="index.html" class="brand">
+                <img src="icon.png" alt="Blind Dragon Studios">
+                <span>BLIND DRAGON</span>
+            </a>
+
+            <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">
+                <span class="sr-only">Toggle navigation</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <div id="primary-nav" class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">Studio</a>
+                <a href="projects.html">Projects</a>
+                <a href="play.html" aria-current="page">Play Demo</a>
+                <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener" class="btn btn-primary">Join Discord</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ─── Terminal Page ─── -->
+    <div class="terminal-wrapper">
+        <div class="container">
+            <div class="terminal-header">
+                <h1>Island Mystery <span class="gold">Terminal</span></h1>
+                <p>Play the text adventure demo right in your browser</p>
+            </div>
+        </div>
+
+        <div class="terminal-outer">
+            <div class="terminal-frame">
+                <div class="terminal-bar">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-bar-title">Island Mystery — Death on Saint-Honoré</span>
+                </div>
+
+                <div id="terminal-container">
+                    <div id="terminal-output"></div>
+                </div>
+
+                <form id="input-form" autocomplete="off">
+                    <label id="prompt-label" for="terminal-input">&gt;</label>
+                    <input id="terminal-input" type="text" placeholder="Type here..." spellcheck="false" autocomplete="off" autofocus>
+                </form>
+            </div>
+
+            <div class="terminal-hints">
+                Type a number to choose &middot; <kbd>map</kbd> island map &middot; <kbd>inv</kbd> inventory &middot; <kbd>evidence</kbd> clue board &middot; <kbd>help</kbd> commands
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── Footer ─── -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <img src="icon.png" alt="Blind Dragon Studios">
+                <span class="sr-only">Blind Dragon Studios</span>
+            </div>
+            <div class="footer-links">
+                <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener">Discord</a>
+                <a href="https://x.com" target="_blank" rel="noopener">Twitter</a>
+                <a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a>
+            </div>
+            <p class="copyright">&copy; 2026 Blind Dragon Studios</p>
+        </div>
+    </footer>
+
+    <script src="site.js" defer></script>
+    <script src="terminal.js"></script>
+    <script src="island-mystery-game.js"></script>
+</body>
+</html>
