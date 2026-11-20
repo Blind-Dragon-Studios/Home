@@ -1,227 +1,584 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blind Dragon Studios is an indie game studio building atmospheric, story-driven mystery and horror experiences. Currently developing Island Mystery.">
-    <title>Blind Dragon Studios – Atmospheric Indie Games</title>
-    <link rel="icon" type="image/png" href="icon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blind Dragon Studios | Indie Games: Vaultsworn, Island Mystery &amp; more</title>
+  <meta name="description" content="Blind Dragon Studios is an independent game studio from Slovenia. Play Vaultsworn, Island Mystery, The Whispering Stalker of Oakhaven, Motorworks, Chains of Hera and more, on itch.io, Windows and in your browser.">
+  <link rel="canonical" href="https://blind-dragon-studios.tech/">
+  <meta name="theme-color" content="#0b0908">
+  <link rel="icon" type="image/png" href="assets/img/favicon-64.png">
+  <link rel="apple-touch-icon" href="assets/img/icon-256.png">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Blind Dragon Studios">
+  <meta property="og:title" content="Blind Dragon Studios | Indie Games">
+  <meta property="og:description" content="Atmospheric action, mystery and horror games. Play in your browser, download for Windows, or follow us on itch.io.">
+  <meta property="og:url" content="https://blind-dragon-studios.tech/">
+  <meta property="og:image" content="https://blind-dragon-studios.tech/assets/img/games/vaultsworn-hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
 
-    <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/img/games/vaultsworn-hero.webp">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script>document.documentElement.classList.remove('no-js');</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Blind Dragon Studios",
+    "alternateName": "BDS",
+    "url": "https://blind-dragon-studios.tech/",
+    "logo": "https://blind-dragon-studios.tech/assets/img/icon-256.png",
+    "founder": { "@type": "Person", "name": "The Benn", "url": "https://thebenn.me/" },
+    "sameAs": [
+      "https://blind-dragon-studios.itch.io/",
+      "https://github.com/Blind-Dragon-Studios",
+      "https://discord.gg/X853nZYY9F"
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- ─── Navigation ─── -->
-    <nav class="site-nav" aria-label="Primary">
-        <div class="container nav-inner">
-            <a href="index.html" class="brand">
-                <img src="icon.png" alt="Blind Dragon Studios">
-                <span>BLIND DRAGON</span>
-            </a>
-
-            <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">
-                <span class="sr-only">Toggle navigation</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                    <path d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-
-            <div id="primary-nav" class="nav-links">
-                <a href="index.html" aria-current="page">Home</a>
-                <a href="about.html">Studio</a>
-                <a href="projects.html">Projects</a>
-                <a href="play.html">Play Demo</a>
-                <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener" class="btn btn-primary">Join Discord</a>
-            </div>
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="brand" aria-label="Blind Dragon Studios home">
+        <img src="assets/img/icon-256.png" alt="" width="38" height="38">
+        <span class="brand-name">BLIND DRAGON<small>STUDIOS</small></span>
+      </a>
+      <nav class="nav-links" id="nav-links" aria-label="Primary">
+        <a href="#featured">Featured</a>
+        <a href="#games">All games</a>
+        <a href="#itch">itch.io</a>
+        <a href="#studio">Studio</a>
+        <a href="play.html">Play in browser</a>
+        <div class="nav-cta">
+          <a class="btn btn-itch btn-sm" href="https://blind-dragon-studios.itch.io/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.13 1.338C2.08 1.96.02 4.328 0 4.95v1.03c0 1.303 1.22 2.45 2.325 2.45 1.33 0 2.436-1.102 2.436-2.41 0 1.308 1.07 2.41 2.4 2.41 1.328 0 2.362-1.102 2.362-2.41 0 1.308 1.137 2.41 2.466 2.41h.024c1.33 0 2.466-1.102 2.466-2.41 0 1.308 1.034 2.41 2.363 2.41 1.33 0 2.4-1.102 2.4-2.41 0 1.308 1.106 2.41 2.435 2.41C22.78 8.43 24 7.282 24 5.98V4.95c-.02-.622-2.08-2.99-3.13-3.612-3.253-.114-5.508-.134-8.87-.133-3.362 0-7.945.053-8.87.133zm6.376 6.477a2.74 2.74 0 0 1-.468.602c-.5.49-1.19.795-1.947.795a2.786 2.786 0 0 1-1.95-.795c-.182-.178-.32-.37-.446-.59-.127.222-.303.415-.486.593a2.788 2.788 0 0 1-1.95.794c-.092 0-.187-.025-.264-.052-.107 1.113-.152 2.176-.168 2.95v.005l-.006 1.167c.02 2.334-.23 7.564 1.03 8.85 1.952.454 5.545.662 9.15.663 3.605 0 7.198-.21 9.15-.664 1.26-1.284 1.01-6.514 1.03-8.848l-.006-1.167v-.004c-.016-.775-.06-1.838-.168-2.95-.077.026-.172.052-.263.052a2.788 2.788 0 0 1-1.95-.795c-.184-.178-.36-.37-.486-.593-.127.22-.265.412-.447.59a2.786 2.786 0 0 1-1.95.794c-.76 0-1.446-.303-1.948-.793a2.74 2.74 0 0 1-.468-.602 2.738 2.738 0 0 1-.463.602 2.787 2.787 0 0 1-1.95.794h-.16a2.787 2.787 0 0 1-1.95-.794 2.738 2.738 0 0 1-.464-.602zm-2.004 2.59v.002c.795.002 1.5 0 2.373.953.687-.072 1.406-.108 2.125-.107.72 0 1.438.035 2.125.107.873-.953 1.578-.95 2.372-.953.376 0 1.876 0 2.92 2.934l1.123 4.028c.832 2.995-.266 3.068-1.636 3.07-2.03-.075-3.156-1.55-3.156-3.025-1.124.184-2.436.276-3.748.277-1.312 0-2.624-.093-3.748-.277 0 1.475-1.125 2.95-3.156 3.026-1.37-.004-2.468-.077-1.636-3.072l1.122-4.027c1.045-2.934 2.545-2.934 2.92-2.934zM12 12.714c-.002.002-2.14 1.966-2.523 2.663l1.4-.056v1.22c0 .056.56.033 1.123.007.562.026 1.124.05 1.124-.008v-1.22l1.4.057C13.14 14.68 12 12.713 12 12.713z"/></svg>
+            itch.io
+          </a>
+          <a class="btn btn-discord btn-sm" href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            Discord
+          </a>
         </div>
-    </nav>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links"><span></span><b class="sr-only">Menu</b></button>
+    </div>
+  </header>
 
-    <!-- ─── Hero ─── -->
-    <header class="hero">
-        <div class="container hero-inner">
-            <div>
-                <p class="kicker">Indie game studio</p>
-                <h1 class="hero-title">Crafting worlds full of <span class="text-shimmer">mystery</span>.</h1>
-                <p class="lede">Blind Dragon Studios builds atmospheric, story-driven experiences. Our debut title <strong>Island Mystery</strong>—inspired by the world of <em>Death in Paradise</em>—is now ready for community testing! Download the executable and help shape the final experience by sharing your feedback on Discord.</p>
-                <div class="btn-row">
-                    <a href="projects.html" class="btn btn-primary btn-lg">Download & Test</a>
-                    <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener" class="btn btn-outline btn-lg">Give Feedback</a>
-                </div>
-            </div>
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top" aria-roledescription="carousel" aria-label="Featured games">
+      <div class="hero-slides" aria-hidden="true">
+        <div class="hero-slide is-active"><img src="assets/img/games/vaultsworn-hero.webp" alt="" fetchpriority="high"></div>
+        <div class="hero-slide"><img src="assets/img/games/island-mystery.webp" alt="" loading="lazy"></div>
+        <div class="hero-slide"><img src="assets/img/games/night-stalker.webp" alt="" loading="lazy"></div>
+        <div class="hero-slide"><img src="assets/img/games/motorworks.webp" alt="" loading="lazy"></div>
+        <div class="hero-slide"><img src="assets/img/games/chains-of-hera-olympus.webp" alt="" loading="lazy"></div>
+      </div>
+      <canvas id="embers" aria-hidden="true"></canvas>
 
-            <div class="hero-art" aria-label="Blind Dragon Studios banner">
-                <img src="Blind_Dragon_Studios-main.png" alt="Blind Dragon Studios">
-                <p class="hero-note">Dev updates, early peeks, and community conversations happen on our Discord.</p>
+      <div class="container hero-content">
+        <div class="hero-studio"><i></i>Blind Dragon Studios · Independent games</div>
+
+        <div class="hero-copy" aria-live="polite">
+          <article class="hero-panel is-active">
+            <div class="hero-tags"><span class="tag tag-hot">New release</span><span class="tag">Action</span><span class="tag">Windows</span></div>
+            <h1 class="h-display hero-title">Vaultsworn</h1>
+            <p class="hero-tagline">Nine seals. One blade.</p>
+            <p class="hero-desc">The Vault beneath the golden valley has broken open. Cross the Vale, restore nine shrines in any order, and face the Demon Lord. Full action combat you play with one hand.</p>
+            <div class="hero-actions">
+              <a class="btn btn-ember btn-lg" href="https://github.com/Blind-Dragon-Studios/Vaultsworn/releases/latest" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>Download for Windows</a>
+              <a class="btn btn-ghost btn-lg" href="https://blind-dragon-studios.itch.io/" target="_blank" rel="noopener">Find it on itch.io</a>
             </div>
+          </article>
+          <article class="hero-panel" aria-hidden="true">
+            <div class="hero-tags"><span class="tag tag-gold">Community beta</span><span class="tag">Detective</span><span class="tag">Godot</span></div>
+            <h2 class="h-display hero-title">Island Mystery</h2>
+            <p class="hero-tagline">Every paradise hides something rotten.</p>
+            <p class="hero-desc">A Caribbean detective walking sim inspired by <em>Death in Paradise</em>. Examine crime scenes, question suspects with secrets of their own, and build your case before the island turns on you.</p>
+            <div class="hero-actions">
+              <a class="btn btn-ember btn-lg" href="IslandMystery.exe" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>Download beta (Windows)</a>
+              <a class="btn btn-ghost btn-lg" href="play.html">Play the text adventure</a>
+            </div>
+          </article>
+          <article class="hero-panel" aria-hidden="true">
+            <div class="hero-tags"><span class="tag tag-gold">Demo</span><span class="tag">Stealth horror</span><span class="tag">Unity</span></div>
+            <h2 class="h-display hero-title">The Whispering Stalker</h2>
+            <p class="hero-tagline">October 31st. Timmy never came home.</p>
+            <p class="hero-desc">Sneak through a rain-soaked suburb, a haunted forest and a cult-ridden cemetery with a flashlight and a handful of candy. You can't fight the Stalker. You can only hide, distract and blind him, and he learns how you play.</p>
+            <div class="hero-actions">
+              <a class="btn btn-ember btn-lg" href="https://github.com/BMKoscak/Halloween-Night-Stalker/releases/latest" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>Download demo</a>
+              <a class="btn btn-ghost btn-lg" href="#spot-stalker">More about it</a>
+            </div>
+          </article>
+          <article class="hero-panel" aria-hidden="true">
+            <div class="hero-tags"><span class="tag tag-live">Play in browser</span><span class="tag">Open town</span><span class="tag">Three.js</span></div>
+            <h2 class="h-display hero-title">Motorworks</h2>
+            <p class="hero-tagline">Build it on the line. Drive it through the fog.</p>
+            <p class="hero-desc">A third-person car factory, customization and open-town action game, Halloween Edition. Assemble your car station by station, then catch a movie, race the drag strip, and outrun the law.</p>
+            <div class="hero-actions">
+              <a class="btn btn-ember btn-lg" href="https://thebenn.me/motorworks-halloween/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Play now</a>
+              <a class="btn btn-ghost btn-lg" href="#spot-motorworks">More about it</a>
+            </div>
+          </article>
+          <article class="hero-panel" aria-hidden="true">
+            <div class="hero-tags"><span class="tag tag-live">Play in browser</span><span class="tag">Action-adventure</span><span class="tag">N64 style</span></div>
+            <h2 class="h-display hero-title">Chains of Hera</h2>
+            <p class="hero-tagline">The Labours of Heracles.</p>
+            <p class="hero-desc">A low-poly, N64-style 3D action-adventure. Free Zeus from his chains across six chapters, from burning Thebes to the peak of Olympus. No install needed.</p>
+            <div class="hero-actions">
+              <a class="btn btn-ember btn-lg" href="https://thebenn.me/Chains-of-Hera/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Play now</a>
+              <a class="btn btn-ghost btn-lg" href="#spot-hera">More about it</a>
+            </div>
+          </article>
         </div>
-    </header>
 
-    <!-- ─── Featured Project: Island Mystery ─── -->
-    <section class="featured-project">
-        <div class="container featured-inner">
-            <div class="featured-media reveal-left">
-                <span class="project-status status-dev overlay-badge">Beta Testing</span>
-                <img src="IslandMystery.png" alt="Island Mystery – key art">
-            </div>
-
-            <div class="featured-info reveal-right">
-                <p class="kicker">Featured project</p>
-                <h2>Island <span class="gold">Mystery</span></h2>
-                <p>A sun-drenched Caribbean island. A string of impossible crimes. You arrive as an outsider tasked with uncovering the truth—but every local has secrets, every paradise hides something rotten, and the island itself seems to want you gone.</p>
-                <p>Inspired by the charm and intrigue of <em>Death in Paradise</em>, Island Mystery blends investigation gameplay with atmospheric exploration, rich characters, and a storyline that twists when you least expect it.</p>
-
-                <ul class="feature-list">
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-                        Investigation &amp; Clues
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-                        Story-driven
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-                        Atmospheric island
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-                        Single-player
-                    </li>
-                </ul>
-
-                <div class="btn-row">
-                    <a href="projects.html" class="btn btn-primary">Learn more</a>
-                    <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener" class="btn btn-outline">Follow development</a>
-                </div>
-            </div>
+        <div class="hero-rail" role="tablist" aria-label="Choose a featured game">
+          <button class="rail-item is-active" role="tab" aria-selected="true"><img src="assets/img/games/vaultsworn-riposte.webp" alt=""><span><b>Vaultsworn</b><small>NEW</small></span><i class="bar"></i></button>
+          <button class="rail-item" role="tab" aria-selected="false"><img src="assets/img/games/island-mystery.webp" alt=""><span><b>Island Mystery</b><small>BETA</small></span><i class="bar"></i></button>
+          <button class="rail-item" role="tab" aria-selected="false"><img src="assets/img/games/night-stalker-porch.webp" alt=""><span><b>Whispering Stalker</b><small>DEMO</small></span><i class="bar"></i></button>
+          <button class="rail-item" role="tab" aria-selected="false"><img src="assets/img/games/motorworks-cinema.webp" alt=""><span><b>Motorworks</b><small>BROWSER</small></span><i class="bar"></i></button>
+          <button class="rail-item" role="tab" aria-selected="false"><img src="assets/img/games/chains-of-hera.webp" alt=""><span><b>Chains of Hera</b><small>BROWSER</small></span><i class="bar"></i></button>
         </div>
+      </div>
+      <div class="scroll-cue" aria-hidden="true">SCROLL</div>
     </section>
 
-    <!-- ─── How We Build ─── -->
-    <section class="section">
-        <div class="container">
-            <div class="grid-2">
-                <div class="reveal">
-                    <p class="kicker">How we build</p>
-                    <h2 class="section-title">Atmosphere first. <span class="gold">Always</span>.</h2>
-                    <p class="section-text">We're a small, focused team. That means fewer distractions and more care: tighter sound, stronger visual storytelling, and design choices that serve the feeling—not the checklist.</p>
-                </div>
-                <div class="reveal">
-                    <p class="section-text">You'll see it in our pacing and our worlds: we prefer eerie details over cheap surprises. Whether it's a tropical paradise hiding something sinister or a quiet room that doesn't feel right—the environment does the work.</p>
-                </div>
-            </div>
-        </div>
+    <!-- ============ STATS ============ -->
+    <section class="stats" aria-label="Studio at a glance">
+      <div class="container stats-grid">
+        <div class="stat reveal"><div class="stat-num" data-count="11">11</div><div class="stat-label">Games &amp; demos</div></div>
+        <div class="stat reveal" style="--d:.08s"><div class="stat-num" data-count="6">6</div><div class="stat-label">Playable in browser</div></div>
+        <div class="stat reveal" style="--d:.16s"><div class="stat-num" data-count="5">5</div><div class="stat-label">Engines &amp; frameworks</div></div>
+        <div class="stat reveal" style="--d:.24s"><div class="stat-num">€0</div><div class="stat-label">To play every one</div></div>
+      </div>
     </section>
 
-    <!-- ─── Pillars ─── -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header reveal">
-                <p class="kicker">What we stand for</p>
-                <h2 class="section-title">Games that feel <span class="gold">intentional</span>.</h2>
-                <p class="section-text">A few pillars we hold ourselves to—so every project feels cohesive and memorable.</p>
-            </div>
-
-            <div class="cards stagger">
-                <div class="card reveal">
-                    <div class="card-num">01</div>
-                    <h3>Compelling mysteries</h3>
-                    <p>We craft layered puzzles and narratives that reward attention, curiosity, and careful observation.</p>
-                </div>
-                <div class="card reveal">
-                    <div class="card-num">02</div>
-                    <h3>Worlds with a story</h3>
-                    <p>Every space has a purpose. Environmental storytelling is part of the narrative, not decoration.</p>
-                </div>
-                <div class="card reveal">
-                    <div class="card-num">03</div>
-                    <h3>Audio you feel</h3>
-                    <p>Sound design is half the experience. We aim for grounded, immersive audio that pulls you deeper in.</p>
-                </div>
-            </div>
+    <!-- ============ FEATURED ============ -->
+    <section class="section" id="featured">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Featured games</p>
+            <h2 class="h-display h2">Worlds with <span class="ember-text">teeth</span>.</h2>
+            <p class="lede">Demon-slaying, island murders, a Halloween stalker and a car factory after dark. Here's what we're proudest of right now.</p>
+          </div>
         </div>
+
+        <div class="spotlights">
+          <!-- Vaultsworn -->
+          <article class="spot" id="spot-vaultsworn" style="--glow: rgba(255,80,20,.38)">
+            <div class="spot-media reveal">
+              <div class="main"><img src="assets/img/games/vaultsworn-wheat.webp" alt="The Slayer standing in a field of golden wheat under a red sky in Vaultsworn" loading="lazy"></div>
+              <div class="sub"><img src="assets/img/games/vaultsworn-gate.webp" alt="The Vault gate on fire in Vaultsworn" loading="lazy"></div>
+            </div>
+            <div class="reveal" style="--d:.1s">
+              <span class="spot-num">01 / ACTION · UNITY 6 · WINDOWS</span>
+              <h3 class="h-display">Vaultsworn</h3>
+              <p class="tagline">Nine seals. One blade.</p>
+              <p>For a hundred winters the Vault held. Now the seals have shattered and demons are clawing up through the fields. Restore the shrines in any order, watch the storm spread and burn as the Vault fights back, then return to the gate for the Demon Lord.</p>
+              <ul class="spot-facts">
+                <li>One-handed action combat</li>
+                <li>Four lands, nine shrines</li>
+                <li>Deflects, ripostes, Wrath</li>
+                <li>Eight demons + a multi-phase boss</li>
+                <li>21 boons to shape each run</li>
+                <li>Story, Normal &amp; Nightmare</li>
+              </ul>
+              <div class="spot-actions">
+                <a class="btn btn-ember" href="https://github.com/Blind-Dragon-Studios/Vaultsworn/releases/latest" target="_blank" rel="noopener">Download</a>
+                <a class="btn btn-itch" href="https://blind-dragon-studios.itch.io/" target="_blank" rel="noopener">itch.io</a>
+                <a class="btn btn-ghost" href="https://github.com/Blind-Dragon-Studios/Vaultsworn" target="_blank" rel="noopener">Source</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Island Mystery -->
+          <article class="spot" id="spot-island" style="--glow: rgba(255,170,60,.32)">
+            <div class="spot-media reveal">
+              <div class="main"><img src="assets/img/games/island-mystery.webp" alt="Island Mystery key art: a detective silhouette on a Caribbean beach at sunset" loading="lazy"></div>
+            </div>
+            <div class="reveal" style="--d:.1s">
+              <span class="spot-num">02 / DETECTIVE · GODOT · WINDOWS + BROWSER</span>
+              <h3 class="h-display">Island Mystery</h3>
+              <p class="tagline">A sun-drenched island. A string of impossible crimes.</p>
+              <p>You arrive as an outsider sent to uncover the truth, but every local has secrets and the island itself seems to want you gone. Inspired by the charm of <em>Death in Paradise</em>, with custom pixel art and tropical reggae sound design. It's in community beta now, so your feedback shapes the final game.</p>
+              <ul class="spot-facts">
+                <li>Investigation-first gameplay</li>
+                <li>A living Caribbean island</li>
+                <li>Suspects with their own lies</li>
+                <li>Browser text-adventure edition</li>
+              </ul>
+              <div class="spot-actions">
+                <a class="btn btn-ember" href="IslandMystery.exe" download>Download beta</a>
+                <a class="btn btn-ghost" href="play.html">Play in browser</a>
+                <a class="btn btn-ghost" href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener">Send feedback</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Night Stalker -->
+          <article class="spot" id="spot-stalker" style="--glow: rgba(255,120,30,.3)">
+            <div class="spot-media reveal">
+              <div class="main"><img src="assets/img/games/night-stalker.webp" alt="Rainy Elm Street at night under a full moon in The Whispering Stalker of Oakhaven" loading="lazy"></div>
+              <div class="sub"><img src="assets/img/games/night-stalker-porch.webp" alt="A lit porch with jack-o'-lanterns" loading="lazy"></div>
+            </div>
+            <div class="reveal" style="--d:.1s">
+              <span class="spot-num">03 / STEALTH HORROR · UNITY · WINDOWS</span>
+              <h3 class="h-display">The Whispering Stalker of Oakhaven</h3>
+              <p class="tagline">Four children have vanished from their doorsteps tonight.</p>
+              <p>Patient #1031 has broken out of Northridge Asylum, and your little brother went trick-or-treating down Elm Street. Collect treats on lit porches, find the key that wakes the cruiser's radio, and stay out of sight. The Stalker adapts to the way you play.</p>
+              <ul class="spot-facts">
+                <li>First-person stealth horror</li>
+                <li>Suburb, forest &amp; cemetery</li>
+                <li>Hide, distract, blind</li>
+                <li>~54 MB, no installer</li>
+              </ul>
+              <div class="spot-actions">
+                <a class="btn btn-ember" href="https://github.com/BMKoscak/Halloween-Night-Stalker/releases/latest" target="_blank" rel="noopener">Download demo</a>
+                <a class="btn btn-ghost" href="https://github.com/BMKoscak/Halloween-Night-Stalker" target="_blank" rel="noopener">Details &amp; controls</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Motorworks -->
+          <article class="spot" id="spot-motorworks" style="--glow: rgba(255,60,60,.3)">
+            <div class="spot-media reveal">
+              <div class="main"><img src="assets/img/games/motorworks.webp" alt="A red car on Main Street at night under a Happy Halloween banner in Motorworks" loading="lazy"></div>
+              <div class="sub"><img src="assets/img/games/motorworks-cinema.webp" alt="The Palace Cinema marquee lit up at dusk" loading="lazy"></div>
+            </div>
+            <div class="reveal" style="--d:.1s">
+              <span class="spot-num">04 / FACTORY + OPEN TOWN · THREE.JS · BROWSER</span>
+              <h3 class="h-display">Motorworks: Halloween Edition</h3>
+              <p class="tagline">Catch a movie. Outrun the law.</p>
+              <p>Stamp panels, fit the powertrain and paint your car on a working assembly line, then take it out into a foggy little town full of secrets. Drive-in movies, drag races, police chases, a phantom hearse and a Konami code or two. Runs right in your browser.</p>
+              <ul class="spot-facts">
+                <li>Station-by-station car build</li>
+                <li>Day/night open town</li>
+                <li>Voiced characters</li>
+                <li>Hidden secrets to find</li>
+              </ul>
+              <div class="spot-actions">
+                <a class="btn btn-ember" href="https://thebenn.me/motorworks-halloween/" target="_blank" rel="noopener">Play in browser</a>
+                <a class="btn btn-ghost" href="https://github.com/BMKoscak/motorworks-halloween" target="_blank" rel="noopener">Source &amp; dev docs</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Chains of Hera -->
+          <article class="spot" id="spot-hera" style="--glow: rgba(240,200,90,.28)">
+            <div class="spot-media reveal">
+              <div class="main"><img src="assets/img/games/chains-of-hera.webp" alt="Chains of Hera title screen over a low-poly Greek village" loading="lazy"></div>
+              <div class="sub"><img src="assets/img/games/chains-of-hera-olympus.webp" alt="Heracles approaching the vault on Mount Olympus" loading="lazy"></div>
+            </div>
+            <div class="reveal" style="--d:.1s">
+              <span class="spot-num">05 / ACTION-ADVENTURE · THREE.JS · BROWSER</span>
+              <h3 class="h-display">Chains of Hera</h3>
+              <p class="tagline">The Labours of Heracles.</p>
+              <p>A love letter to late-90s 3D adventures. Fight the Nemean Lion, the Hydra and the Minotaur across six chapters, from burning Thebes through the Labyrinth and the Underworld to the peak of Olympus, with an authentic N64-era look.</p>
+              <ul class="spot-facts">
+                <li>Six chapters, three bosses</li>
+                <li>Low-poly N64 aesthetic</li>
+                <li>Voiced dialogue</li>
+                <li>Widescreen toggle</li>
+              </ul>
+              <div class="spot-actions">
+                <a class="btn btn-ember" href="https://thebenn.me/Chains-of-Hera/" target="_blank" rel="noopener">Play in browser</a>
+                <a class="btn btn-ghost" href="https://github.com/BMKoscak/Chains-of-Hera" target="_blank" rel="noopener">Source</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <!-- ─── Monthly Update Schedule ─── -->
-    <section class="update-schedule">
-        <div class="container">
-            <div class="schedule-banner reveal-scale">
-                <div class="schedule-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                        <line x1="16" y1="2" x2="16" y2="6"/>
-                        <line x1="8" y1="2" x2="8" y2="6"/>
-                        <line x1="3" y1="10" x2="21" y2="10"/>
-                        <text x="12" y="17" text-anchor="middle" fill="currentColor" font-size="6" font-family="Cinzel" stroke="none">5</text>
-                    </svg>
-                </div>
-                <div class="schedule-content">
-                    <h3>Monthly Dev <span class="gold">Updates</span></h3>
-                    <p>We post a community update on the <strong>5th of every month</strong> on our Discord server. Progress recaps, screenshots, behind-the-scenes looks, and roadmap news. If there are big developments mid-month, we'll post bonus updates too.</p>
-                    <div class="schedule-date">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        Next update: March 5, 2026
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── CTA ─── -->
-    <section class="cta">
-        <div class="container reveal">
-            <p class="kicker">Community</p>
-            <h2 class="cta-title">Join the <span class="text-shimmer">Vanguard</span></h2>
-            <p class="cta-text">Get dev logs, early screenshots, playtest calls, and a direct line to the team. If you want to help shape the games, this is the place.</p>
-            <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Join Discord</a>
-        </div>
-    </section>
-
-    <!-- ─── Footer ─── -->
-    <footer class="site-footer">
-        <div class="container footer-content">
-            <div class="footer-brand">
-                <img src="icon.png" alt="Blind Dragon Studios">
-                <span class="sr-only">Blind Dragon Studios</span>
-            </div>
-            <div class="footer-links">
-                <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener">Discord</a>
-                <a href="https://x.com" target="_blank" rel="noopener">Twitter</a>
-                <a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a>
-            </div>
-            <p class="copyright">&copy; 2026 Blind Dragon Studios</p>
-        </div>
-    </footer>
-
-    <!-- ─── Discord Popup Modal ─── -->
-    <div class="popup-overlay" id="discord-popup" role="dialog" aria-modal="true" aria-labelledby="popup-heading">
-        <div class="popup-modal">
-            <button class="popup-close" data-popup-close aria-label="Close popup">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                    <path d="M18 6 6 18M6 6l12 12"/>
-                </svg>
-            </button>
-
-            <div class="popup-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                </svg>
-            </div>
-
-            <h2 id="popup-heading">Stay <span class="gold">Up to Date</span></h2>
-            <p>Stay up to date with our development by joining our Discord server. Get monthly dev updates on the <strong>5th of every month</strong>, early screenshots, playtest calls, and more.</p>
-
-            <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener" class="btn btn-primary">Join Our Discord</a>
-            <button class="popup-dismiss" data-popup-close>Maybe later</button>
-        </div>
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Unity</span><span>Godot</span><span>Three.js</span><span>Blender</span><span>Python</span><span>Pygame</span><span>Pyodide</span><span>cannon-es</span><span>ElevenLabs</span>
+        <span>Unity</span><span>Godot</span><span>Three.js</span><span>Blender</span><span>Python</span><span>Pygame</span><span>Pyodide</span><span>cannon-es</span><span>ElevenLabs</span>
+      </div>
     </div>
 
-    <script src="site.js" defer></script>
+    <!-- ============ LIBRARY ============ -->
+    <section class="section library" id="games">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">The library</p>
+            <h2 class="h-display h2">Every game we've made.</h2>
+            <p class="lede">From weekend Pygame experiments to full 3D releases. Filter by how you want to play.</p>
+          </div>
+          <div class="filters" role="group" aria-label="Filter games">
+            <button class="filter" data-filter="all" aria-pressed="true">All<span class="count"></span></button>
+            <button class="filter" data-filter="browser" aria-pressed="false">Play in browser<span class="count"></span></button>
+            <button class="filter" data-filter="windows" aria-pressed="false">Windows<span class="count"></span></button>
+            <button class="filter" data-filter="python" aria-pressed="false">Python<span class="count"></span></button>
+            <button class="filter" data-filter="spooky" aria-pressed="false">Spooky<span class="count"></span></button>
+          </div>
+        </div>
+
+        <div class="grid" id="library">
+          <article class="card reveal" data-tags="windows">
+            <div class="card-cover"><img src="assets/img/games/vaultsworn-rift.webp" alt="The rift opening beneath the gate in Vaultsworn" loading="lazy"><div class="badges"><span class="tag tag-hot">New</span></div></div>
+            <div class="card-body">
+              <div class="card-meta">Action · Unity · Windows</div>
+              <h3>Vaultsworn</h3>
+              <p>One-handed demon-slaying across four lands and nine shrines, with a storm that spreads as you progress.</p>
+              <div class="card-actions"><a class="btn btn-ember btn-sm stretched" href="https://github.com/Blind-Dragon-Studios/Vaultsworn/releases/latest" target="_blank" rel="noopener">Download</a><a class="btn btn-ghost btn-sm" href="https://blind-dragon-studios.itch.io/" target="_blank" rel="noopener">itch.io</a></div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-tags="windows browser">
+            <div class="card-cover"><img src="assets/img/games/island-mystery.webp" alt="Island Mystery key art" loading="lazy"><div class="badges"><span class="tag tag-gold">Beta</span><span class="tag tag-live">Browser</span></div></div>
+            <div class="card-body">
+              <div class="card-meta">Detective · Godot · Windows + Browser</div>
+              <h3>Island Mystery</h3>
+              <p>A Caribbean detective walking sim inspired by Death in Paradise, plus a text-adventure edition you can play right here.</p>
+              <div class="card-actions"><a class="btn btn-ember btn-sm stretched" href="IslandMystery.exe" download>Download beta</a><a class="btn btn-ghost btn-sm" href="play.html">Play in browser</a></div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-tags="windows spooky">
+            <div class="card-cover"><img src="assets/img/games/night-stalker-porch.webp" alt="The Whispering Stalker of Oakhaven porch scene" loading="lazy"><div class="badges"><span class="tag tag-gold">Demo</span></div></div>
+            <div class="card-body">
+              <div class="card-meta">Stealth horror · Unity · Windows</div>
+              <h3>The Whispering Stalker of Oakhaven</h3>
+              <p>Halloween night, a missing brother and an escaped patient who learns from how you hide.</p>
+              <div class="card-actions"><a class="btn btn-ember btn-sm stretched" href="https://github.com/BMKoscak/Halloween-Night-Stalker/releases/latest" target="_blank" rel="noopener">Download demo</a></div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-tags="browser spooky">
+            <div class="card-cover"><img src="assets/img/games/motorworks-cinema.webp" alt="Motorworks cinema" loading="lazy"><div class="badges"><span class="tag tag-live">Browser</span></div></div>
+            <div class="card-body">
+              <div class="card-meta">Factory + open town · Three.js</div>
+              <h3>Motorworks: Halloween Edition</h3>
+              <p>Build a car on the assembly line, then drive it through a foggy town full of secrets, races and cops.</p>
+              <div class="card-actions"><a class="btn btn-ember btn-sm stretched" href="https://thebenn.me/motorworks-halloween/" target="_blank" rel="noopener">Play now</a></div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-tags="browser">
+            <div class="card-cover"><img src="assets/img/games/chains-of-hera.webp" alt="Chains of Hera title screen" loading="lazy"><div class="badges"><span class="tag tag-live">Browser</span></div></div>
+            <div class="card-body">
+              <div class="card-meta">Action-adventure · Three.js</div>
+              <h3>Chains of Hera</h3>
+              <p>An N64-style odyssey through six chapters of Greek myth to free Zeus from his chains.</p>
+              <div class="card-actions"><a class="btn btn-ember btn-sm stretched" href="https://thebenn.me/Chains-of-Hera/" target="_blank" rel="noopener">Play now</a></div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-tags="browser python">
+            <div class="card-cover"><img src="assets/img/games/serpent-seas.webp" alt="Serpent Seas 3D sea chart with islands and a galleon" loading="lazy"><div class="badges"><span class="tag tag-live">Browser</span></div></div>
+            <div class="card-body">
+              <div class="card-meta">Learning adventure · Pyodide · EN / SL</div>
+              <h3>Serpent Seas</h3>
+              <p>Learn Python on the high seas: 14 islands, 81 lessons and real Python running in your browser, from print() to classes.</p>
+              <div class="card-actions"><a class="btn btn-ember btn-sm stretched" href="https://thebenn.me/serpent-seas/" target="_blank" rel="noopener">Set sail</a></div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-tags="browser">
+            <div class="card-cover">
+              <div class="cover-gen cover-touchline" aria-hidden="true">
+                <svg viewBox="0 0 320 180" preserveAspectRatio="none"><g fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2"><rect x="14" y="12" width="292" height="156"/><line x1="160" y1="12" x2="160" y2="168"/><circle cx="160" cy="90" r="26"/><rect x="14" y="52" width="40" height="76"/><rect x="266" y="52" width="40" height="76"/></g></svg>
+                <div class="scoreboard">2026/27 · MATCHDAY 1</div>
+              </div>
+              <div class="badges"><span class="tag tag-live">Browser</span></div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">Football management · Fan project</div>
+              <h3>Touchline Manager 26/27</h3>
+              <p>A fast, classic football manager in the spirit of CM 01/02, with six leagues including the PrvaLiga and live spoken commentary.</p>
+              <div class="card-actions"><a class="btn btn-ember btn-sm stretched" href="https://bmkoscak.github.io/touchline-manager/" target="_blank" rel="noopener">Kick off</a></div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-tags="browser">
+            <div class="card-cover">
+              <div class="cover-gen cover-cerebrum" aria-hidden="true"><div class="grid-bg"></div><div class="seq">2, 4, 8, 16, <b>?</b></div><div class="title">CEREBRUM</div></div>
+              <div class="badges"><span class="tag tag-live">Browser</span></div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">Logic puzzle · 100+ levels</div>
+              <h3>Cerebrum: The Sequence</h3>
+              <p>Sequences, code-breaks and riddles that scale from simple arithmetic to binary. Five mistakes and the system reboots.</p>
+              <div class="card-actions"><a class="btn btn-ember btn-sm stretched" href="games/cerebrum/">Play now</a></div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-tags="python spooky">
+            <div class="card-cover">
+              <div class="cover-gen cover-candy" aria-hidden="true">
+                <svg viewBox="0 0 320 180"><g fill="#120a14"><path d="M0 150 L30 150 L30 112 L52 92 L74 112 L74 150 L104 150 L104 124 L120 124 L120 100 L136 86 L152 100 L152 150 L190 150 L190 118 L214 96 L238 118 L238 150 L320 150 L320 180 L0 180Z"/></g><g fill="#ffb347" opacity=".9"><rect x="44" y="118" width="7" height="9"/><rect x="128" y="108" width="7" height="8"/><rect x="206" y="124" width="8" height="9"/></g><g transform="translate(262 150)"><ellipse rx="16" ry="13" fill="#ff7a1a"/><path d="M-2 -13 q2 -7 6 -8" stroke="#3b6b2a" stroke-width="3" fill="none"/><path d="M-8 -3 l4 -4 l4 4z M4 -3 l4 -4 l4 4z" fill="#2a0f00" transform="translate(-2 0)"/><path d="M-8 5 q8 6 16 0" stroke="#2a0f00" stroke-width="2.5" fill="none"/></g><g transform="translate(150 54)" fill="#f4eefc" opacity=".9"><path d="M-14 18 Q-14 -10 0 -10 Q14 -10 14 18 L9 13 L4 18 L0 13 L-4 18 L-9 13Z"/><circle cx="-5" cy="2" r="2.4" fill="#120a14"/><circle cx="5" cy="2" r="2.4" fill="#120a14"/></g></svg>
+              </div>
+              <div class="badges"><span class="tag tag-gold">Beta</span></div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">Top-down · Python / Pygame</div>
+              <h3>Halloween Haunt: Candy Quest</h3>
+              <p>Five haunted levels of candy collecting, church puzzles, cemetery digging and ghosts that multiply as night falls.</p>
+              <div class="card-actions"><a class="btn btn-ember btn-sm stretched" href="https://github.com/BMKoscak/Halloween-Haunt-Candy-Quest" target="_blank" rel="noopener">Get the game</a></div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-tags="python">
+            <div class="card-cover"><img src="assets/img/games/jungle-escape.webp" alt="Jungle Escape title art" loading="lazy" style="image-rendering:pixelated"><div class="badges"><span class="tag">Open source</span></div></div>
+            <div class="card-body">
+              <div class="card-meta">Platformer · Python / Pygame</div>
+              <h3>Jungle Escape</h3>
+              <p>A crash-landed pilot, three jungle levels and a plane to rebuild. Full controller support, MIT licensed.</p>
+              <div class="card-actions"><a class="btn btn-ember btn-sm stretched" href="https://github.com/BMKoscak/2d-platformer_pygame" target="_blank" rel="noopener">Get the game</a></div>
+            </div>
+          </article>
+
+          <article class="card reveal" data-tags="python">
+            <div class="card-cover">
+              <div class="cover-gen cover-riddle" aria-hidden="true">
+                <svg viewBox="0 0 64 36" shape-rendering="crispEdges"><rect y="20" width="64" height="16" fill="#3f7fd1"/><rect y="22" width="64" height="1" fill="#7fb6f0"/><rect y="27" width="64" height="1" fill="#6aa3e6"/><rect x="0" y="16" width="12" height="20" fill="#4c9a3a"/><rect x="52" y="16" width="12" height="20" fill="#4c9a3a"/><rect x="0" y="16" width="12" height="2" fill="#6cc04f"/><rect x="52" y="16" width="12" height="2" fill="#6cc04f"/><rect x="24" y="19" width="16" height="3" fill="#8a5a2b"/><rect x="26" y="22" width="12" height="1" fill="#5e3b1a"/><rect x="30" y="13" width="4" height="6" fill="#d8b25c"/><rect x="30" y="11" width="4" height="2" fill="#f1d3a8"/><rect x="5" y="12" width="4" height="4" fill="#e8742a"/><rect x="8" y="11" width="2" height="2" fill="#e8742a"/><rect x="56" y="13" width="3" height="3" fill="#7ac943"/><rect x="58" y="12" width="2" height="2" fill="#bbb"/><rect x="10" y="4" width="8" height="2" fill="#fff"/><rect x="12" y="2" width="5" height="2" fill="#fff"/><rect x="44" y="6" width="9" height="2" fill="#fff"/></svg>
+              </div>
+              <div class="badges"><span class="tag">Open source</span></div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">Logic riddles · Python / Tkinter</div>
+              <h3>Pixel Riddle Arcade</h3>
+              <p>Pixel-art takes on classic riddles: the river crossing, the torch bridge and the water jugs, with an arcade launcher.</p>
+              <div class="card-actions"><a class="btn btn-ember btn-sm stretched" href="https://github.com/BMKoscak/Puzzle-games" target="_blank" rel="noopener">Get the game</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ITCH.IO ============ -->
+    <section class="section" id="itch">
+      <div class="container">
+        <div class="itch reveal">
+          <div>
+            <div class="itch-logo">
+              <svg viewBox="0 0 24 24" fill="#fa5c5c" aria-hidden="true"><path d="M3.13 1.338C2.08 1.96.02 4.328 0 4.95v1.03c0 1.303 1.22 2.45 2.325 2.45 1.33 0 2.436-1.102 2.436-2.41 0 1.308 1.07 2.41 2.4 2.41 1.328 0 2.362-1.102 2.362-2.41 0 1.308 1.137 2.41 2.466 2.41h.024c1.33 0 2.466-1.102 2.466-2.41 0 1.308 1.034 2.41 2.363 2.41 1.33 0 2.4-1.102 2.4-2.41 0 1.308 1.106 2.41 2.435 2.41C22.78 8.43 24 7.282 24 5.98V4.95c-.02-.622-2.08-2.99-3.13-3.612-3.253-.114-5.508-.134-8.87-.133-3.362 0-7.945.053-8.87.133zm6.376 6.477a2.74 2.74 0 0 1-.468.602c-.5.49-1.19.795-1.947.795a2.786 2.786 0 0 1-1.95-.795c-.182-.178-.32-.37-.446-.59-.127.222-.303.415-.486.593a2.788 2.788 0 0 1-1.95.794c-.092 0-.187-.025-.264-.052-.107 1.113-.152 2.176-.168 2.95v.005l-.006 1.167c.02 2.334-.23 7.564 1.03 8.85 1.952.454 5.545.662 9.15.663 3.605 0 7.198-.21 9.15-.664 1.26-1.284 1.01-6.514 1.03-8.848l-.006-1.167v-.004c-.016-.775-.06-1.838-.168-2.95-.077.026-.172.052-.263.052a2.788 2.788 0 0 1-1.95-.795c-.184-.178-.36-.37-.486-.593-.127.22-.265.412-.447.59a2.786 2.786 0 0 1-1.95.794c-.76 0-1.446-.303-1.948-.793a2.74 2.74 0 0 1-.468-.602 2.738 2.738 0 0 1-.463.602 2.787 2.787 0 0 1-1.95.794h-.16a2.787 2.787 0 0 1-1.95-.794 2.738 2.738 0 0 1-.464-.602zm-2.004 2.59v.002c.795.002 1.5 0 2.373.953.687-.072 1.406-.108 2.125-.107.72 0 1.438.035 2.125.107.873-.953 1.578-.95 2.372-.953.376 0 1.876 0 2.92 2.934l1.123 4.028c.832 2.995-.266 3.068-1.636 3.07-2.03-.075-3.156-1.55-3.156-3.025-1.124.184-2.436.276-3.748.277-1.312 0-2.624-.093-3.748-.277 0 1.475-1.125 2.95-3.156 3.026-1.37-.004-2.468-.077-1.636-3.072l1.122-4.027c1.045-2.934 2.545-2.934 2.92-2.934zM12 12.714c-.002.002-2.14 1.966-2.523 2.663l1.4-.056v1.22c0 .056.56.033 1.123.007.562.026 1.124.05 1.124-.008v-1.22l1.4.057C13.14 14.68 12 12.713 12 12.713z"/></svg>
+              blind-dragon-studios.itch.io
+            </div>
+            <h2 class="h-display">Our games live on <span style="color:#ff8080">itch.io</span>.</h2>
+            <p>Grab our builds, leave a rating or a comment, and follow the studio to get notified the moment something new drops. Following costs nothing and helps a small studio more than you'd think.</p>
+            <ul class="itch-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Download builds and updates</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Get notified about new releases and devlogs</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Rate, comment and add us to your collections</li>
+            </ul>
+            <div class="itch-actions">
+              <a class="btn btn-itch btn-lg" href="https://blind-dragon-studios.itch.io/" target="_blank" rel="noopener">Visit our itch.io page</a>
+              <a class="btn btn-ghost btn-lg" href="#games">Browse the library</a>
+            </div>
+          </div>
+          <div class="itch-stack" aria-hidden="true">
+            <figure class="itch-card"><img src="assets/img/games/night-stalker.webp" alt="" loading="lazy"><figcaption>Whispering Stalker <span>Demo</span></figcaption></figure>
+            <figure class="itch-card"><img src="assets/img/games/island-mystery.webp" alt="" loading="lazy"><figcaption>Island Mystery <span>Beta</span></figcaption></figure>
+            <figure class="itch-card"><img src="assets/img/games/vaultsworn-rift.webp" alt="" loading="lazy"><figcaption>Vaultsworn <span>New</span></figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STUDIO ============ -->
+    <section class="section" id="studio" style="padding-top:20px">
+      <div class="container studio-grid">
+        <div class="reveal">
+          <div class="emblem-wrap">
+            <img src="assets/img/games/bds-emblem.webp" alt="The Blind Dragon Studios emblem: a dragon coiled inside a ring, carved in stone and gold" loading="lazy">
+            <div class="founder">
+              <div class="founder-mark">B</div>
+              <div><b>The Benn</b><small>Founder &amp; lead developer</small></div>
+              <a href="https://thebenn.me/" target="_blank" rel="noopener">THEBENN.ME ↗</a>
+            </div>
+          </div>
+        </div>
+        <div class="reveal" style="--d:.1s">
+          <p class="eyebrow">The studio</p>
+          <h2 class="h-display h2">Small studio. <span class="ember-text">Big atmosphere.</span></h2>
+          <p class="lede">Blind Dragon Studios is an independent game studio based in Slovenia. We make games across genres and engines, from Unity action and Godot mysteries to 3D worlds that run straight in a browser tab, and we share almost everything we build in the open.</p>
+          <div class="pillars">
+            <div class="pillar"><div><h3>Atmosphere first</h3><p>Light, sound and space do the storytelling. We'd rather unsettle you with a quiet porch than a cheap jump scare.</p></div></div>
+            <div class="pillar"><div><h3>Play anywhere</h3><p>Whenever we can, our games run in the browser with nothing to install. The rest ship as small, portable Windows builds.</p></div></div>
+            <div class="pillar"><div><h3>Built in the open</h3><p>Source, devlogs and demos go public early, and community feedback on Discord shapes what we ship. Our pipelines use modern tools, including AI-assisted modelling and voice.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COMMUNITY ============ -->
+    <section class="section community" id="community">
+      <div class="container reveal">
+        <p class="eyebrow" style="justify-content:center">Community</p>
+        <h2 class="h-display h2">Join the <span class="ember-text">Vanguard</span>.</h2>
+        <p class="lede">Dev logs, early screenshots, playtest calls and a direct line to the team. We post a community update on the 5th of every month, plus bonus drops when something big lands.</p>
+        <div class="community-actions">
+          <a class="btn btn-discord btn-lg" href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener">Join our Discord</a>
+          <a class="btn btn-itch btn-lg" href="https://blind-dragon-studios.itch.io/" target="_blank" rel="noopener">Follow on itch.io</a>
+        </div>
+        <div class="countdown" id="countdown">
+          <div class="countdown-label">Next dev update<b id="cd-date">5th of the month</b></div>
+          <div class="cd-units">
+            <div class="cd-unit"><b data-u="d">--</b><small>Days</small></div>
+            <div class="cd-unit"><b data-u="h">--</b><small>Hours</small></div>
+            <div class="cd-unit"><b data-u="m">--</b><small>Mins</small></div>
+            <div class="cd-unit"><b data-u="s">--</b><small>Secs</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a href="#top" class="brand"><img src="assets/img/icon-256.png" alt="" width="38" height="38"><span class="brand-name">BLIND DRAGON<small>STUDIOS</small></span></a>
+          <p>Independent games from Slovenia. Action, mystery, horror and whatever else won't leave us alone.</p>
+        </div>
+        <div>
+          <h4>Play</h4>
+          <ul>
+            <li><a href="#featured">Featured games</a></li>
+            <li><a href="#games">Full library</a></li>
+            <li><a href="play.html">Island Mystery (browser)</a></li>
+            <li><a href="games/cerebrum/">Cerebrum</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://blind-dragon-studios.itch.io/" target="_blank" rel="noopener">itch.io</a></li>
+            <li><a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener">Discord</a></li>
+            <li><a href="https://github.com/Blind-Dragon-Studios" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Studio</h4>
+          <ul>
+            <li><a href="#studio">About</a></li>
+            <li><a href="#community">Dev updates</a></li>
+            <li><a href="https://thebenn.me/" target="_blank" rel="noopener">The Benn</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> Blind Dragon Studios. All rights reserved.</span>
+        <span>Fan projects are unofficial and not affiliated with the original rights holders.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
-

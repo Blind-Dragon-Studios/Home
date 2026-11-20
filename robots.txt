@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://blind-dragon-studios.tech/sitemap.xml
