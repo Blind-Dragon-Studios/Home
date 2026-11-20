@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../assets/img/favicon-64.png">
+    <title>Cerebrum | Logic Puzzle Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .terminal-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #38bdf8;
+        }
+
+        /* Animation for wrong answer */
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        /* Success pulse */
+        .success-pulse {
+            animation: pulse-green 0.5s ease-in-out;
+        }
+
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(74, 222, 128, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 overflow-hidden relative">
+
+    <!-- Background decorative elements -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-10 left-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Main Game Container -->
+    <main class="w-full max-w-2xl glass-panel rounded-xl p-6 md:p-8 relative">
+        
+        <!-- Header / HUD -->
+        <header class="flex justify-between items-center mb-8 border-b border-slate-700 pb-4">
+            <div>
+                <h1 class="text-2xl font-bold text-cyan-400 tracking-tighter"><i class="fas fa-brain mr-2"></i>CEREBRUM</h1>
+                <p class="text-xs text-slate-400">Authored by The Benn</p>
+            </div>
+            <div class="flex gap-4 text-sm">
+                <div class="flex flex-col items-end">
+                    <span class="text-slate-400">LEVEL</span>
+                    <span id="level-display" class="text-xl font-bold text-white">1</span>
+                </div>
+                <div class="flex flex-col items-end">
+                    <span class="text-slate-400">HINTS</span>
+                    <span id="hints-display" class="text-xl font-bold text-yellow-400">3</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Progress Bar (Mistakes) -->
+        <div class="mb-6">
+            <div class="flex justify-between text-xs text-slate-400 mb-1">
+                <span>SYSTEM INTEGRITY</span>
+                <span id="integrity-text">100%</span>
+            </div>
+            <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
+                <div id="integrity-bar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 100%"></div>
+            </div>
+            <div id="lives-display" class="flex justify-end mt-2 space-x-1 text-red-500 text-xs h-4">
+                <!-- Hearts injected here -->
+            </div>
+        </div>
+
+        <!-- Game Area -->
+        <div id="game-screen" class="text-center py-8">
+            <div class="mb-2 text-slate-400 text-sm">SOLVE THE SEQUENCE</div>
+            <div id="puzzle-container" class="text-3xl md:text-5xl font-bold mb-8 text-white tracking-widest break-words">
+                <!-- Puzzle Text Goes Here -->
+                loading...
+            </div>
+
+            <div id="hint-box" class="hidden mb-6 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded text-yellow-200 text-sm">
+                <i class="fas fa-lightbulb mr-2"></i> <span id="hint-text"></span>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-3 max-w-md mx-auto">
+                <input type="text" id="answer-input" autocomplete="off" 
+                    class="terminal-input flex-1 bg-slate-800 border border-slate-600 rounded px-4 py-3 text-center text-lg placeholder-slate-500 focus:border-cyan-400 transition-colors"
+                    placeholder="Enter solution...">
+                
+                <button onclick="game.submitAnswer()" 
+                    class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-3 rounded font-bold transition-colors shadow-lg shadow-cyan-500/20">
+                    EXECUTE
+                </button>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="mt-8 flex justify-between items-center pt-4 border-t border-slate-700">
+            <button onclick="game.useHint()" id="hint-btn" class="text-slate-400 hover:text-yellow-400 text-sm transition-colors flex items-center gap-2">
+                <i class="fas fa-key"></i> DECRYPT HINT (-1)
+            </button>
+            <div class="text-xs text-slate-500">
+                CHECKPOINT: LVL <span id="checkpoint-display">1</span>
+            </div>
+        </div>
+
+        <!-- Notification Overlay -->
+        <div id="overlay" class="absolute inset-0 bg-slate-900/95 z-50 hidden flex-col items-center justify-center text-center p-8 rounded-xl">
+            <div id="overlay-icon" class="text-6xl mb-4"></div>
+            <h2 id="overlay-title" class="text-3xl font-bold mb-2"></h2>
+            <p id="overlay-message" class="text-slate-400 mb-6"></p>
+            <button id="overlay-btn" class="bg-cyan-600 hover:bg-cyan-500 text-white px-8 py-3 rounded font-bold transition-colors">
+                CONTINUE
+            </button>
+        </div>
+
+    </main>
+
+    <script>
+        // --- Game Logic ---
+        const MAX_MISTAKES = 5;
+        const CHECKPOINT_INTERVAL = 10; // Save every 10 levels
+
+        class Game {
+            constructor() {
+                this.level = 1;
+                this.mistakes = 0;
+                this.hints = 3;
+                this.checkpoint = 1;
+                this.currentPuzzle = null;
+                
+                // DOM Elements
+                this.dom = {
+                    level: document.getElementById('level-display'),
+                    hints: document.getElementById('hints-display'),
+                    integrityBar: document.getElementById('integrity-bar'),
+                    integrityText: document.getElementById('integrity-text'),
+                    puzzle: document.getElementById('puzzle-container'),
+                    input: document.getElementById('answer-input'),
+                    hintBox: document.getElementById('hint-box'),
+                    hintText: document.getElementById('hint-text'),
+                    hintBtn: document.getElementById('hint-btn'),
+                    checkpoint: document.getElementById('checkpoint-display'),
+                    lives: document.getElementById('lives-display'),
+                    overlay: document.getElementById('overlay'),
+                    overlayTitle: document.getElementById('overlay-title'),
+                    overlayMsg: document.getElementById('overlay-message'),
+                    overlayBtn: document.getElementById('overlay-btn'),
+                    overlayIcon: document.getElementById('overlay-icon')
+                };
+
+                this.loadProgress();
+                this.init();
+            }
+
+            init() {
+                this.renderStats();
+                this.generatePuzzle();
+                
+                // Enter key support
+                this.dom.input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.submitAnswer();
+                });
+
+                this.dom.overlayBtn.addEventListener('click', () => {
+                    this.dom.overlay.classList.add('hidden');
+                    this.dom.overlay.classList.remove('flex');
+                    this.dom.input.focus();
+                    
+                    // If resetting from game over
+                    if (this.mistakes >= MAX_MISTAKES) {
+                        this.resetToCheckpoint();
+                    }
+                });
+            }
+
+            // --- Level Generation Engine ---
+            generatePuzzle() {
+                this.dom.input.value = '';
+                this.dom.hintBox.classList.add('hidden');
+                this.dom.input.focus();
+                
+                const lvl = this.level;
+                let q = "", a = "", h = "";
+
+                // Difficulty scaler
+                if (lvl <= 5) {
+                    // Simple Arithmetic Patterns
+                    const start = Math.floor(Math.random() * 10) + 1;
+                    const step = Math.floor(Math.random() * 5) + 2;
+                    q = `${start}, ${start+step}, ${start+(step*2)}, ?`;
+                    a = (start+(step*3)).toString();
+                    h = `The numbers increase by ${step}.`;
+                } 
+                else if (lvl <= 15) {
+                    // Geometric / Multiplication
+                    const start = Math.floor(Math.random() * 3) + 1;
+                    const mult = 2;
+                    q = `${start}, ${start*mult}, ${start*mult*mult}, ${start*mult*mult*mult}, ?`;
+                    a = (start*Math.pow(mult, 4)).toString();
+                    h = "Each number is multiplied by the previous factor.";
+                }
+                else if (lvl <= 25) {
+                    // Fibonacci Variations
+                    const f1 = Math.floor(Math.random() * 5);
+                    const f2 = f1 + Math.floor(Math.random() * 3) + 1;
+                    q = `${f1}, ${f2}, ${f1+f2}, ${f1+f2+f2}, ?`;
+                    a = (f1+f2+f2 + f1+f2).toString();
+                    h = "Add the previous two numbers together.";
+                }
+                else if (lvl <= 40) {
+                    // Squares and Cubes
+                    const start = Math.floor(Math.random() * 3) + 2;
+                    if (Math.random() > 0.5) {
+                        q = `2:4, 3:9, 4:16, ${start}:?`;
+                        a = (start*start).toString();
+                        h = "Number squared (n^2).";
+                    } else {
+                        q = `1, 8, 27, 64, ?`;
+                        a = "125";
+                        h = "Perfect cubes.";
+                    }
+                }
+                else if (lvl <= 60) {
+                    // Binary & Hex
+                    const num = Math.floor(Math.random() * 15) + 10; // 10-25
+                    if (Math.random() > 0.5) {
+                        q = `BINARY: ${num.toString(2)} = ? (Decimal)`;
+                        a = num.toString();
+                        h = "Convert from base 2 to base 10.";
+                    } else {
+                        q = `DECIMAL: ${num} = ? (Hex)`;
+                        a = num.toString(16).toUpperCase();
+                        h = "Convert to base 16 (0-9, A-F).";
+                    }
+                }
+                else if (lvl <= 80) {
+                    // Interleaved Series (Two patterns mixed)
+                    // e.g. +2, *2, +2, *2
+                    const start = 5;
+                    q = "5, 7, 14, 16, 32, 34, ?";
+                    a = "68"; // *2
+                    // Note: proceduralizing interleaved is complex, using templates for high levels
+                    // Or simpler:
+                    const n = Math.floor(Math.random() * 5) + 10;
+                    q = `${n}, ${n-2}, ${n+2}, ${n}, ${n+4}, ?`;
+                    a = (n+2).toString();
+                    h = "Two alternating patterns or operations.";
+                }
+                else {
+                    // Logic / Boss Levels
+                    const riddles = [
+                        {q: "1=3, 3=5, 5=4, 4=4. 6=?", a: "3", h: "Count the letters in the English word."},
+                        {q: "8809=6, 7111=0, 2172=0, 6666=4, 1111=0, 3213=0, 7662=2, 9312=?", a: "1", h: "Count the closed circles in the digits."},
+                        {q: "O, T, T, F, F, S, S, ?", a: "e", h: "First letter of numbers (One, Two...)"},
+                        {q: "M, T, W, T, F, ?", a: "s", h: "Days of the week."},
+                        {q: "J, F, M, A, M, J, ?", a: "j", h: "Months of the year."}
+                    ];
+                    // Cycle through riddles based on level mod
+                    const r = riddles[lvl % riddles.length];
+                    q = r.q;
+                    a = r.a;
+                    h = r.h;
+                }
+
+                this.currentPuzzle = { q, a, h };
+                this.dom.puzzle.innerText = q;
+            }
+
+            // --- Core Mechanics ---
+            submitAnswer() {
+                let input = this.dom.input.value.trim().toLowerCase();
+                let correct = this.currentPuzzle.a.toLowerCase();
+
+                if (input === "") return;
+
+                if (input === correct) {
+                    this.handleSuccess();
+                } else {
+                    this.handleFailure();
+                }
+            }
+
+            handleSuccess() {
+                // Animation
+                this.dom.input.classList.add('success-pulse');
+                setTimeout(() => this.dom.input.classList.remove('success-pulse'), 500);
+
+                // Update State
+                this.level++;
+                if (this.level % 5 === 0) this.hints++; // Gain hint every 5 levels
+                if (this.level % CHECKPOINT_INTERVAL === 0 || this.level === 1) {
+                    this.checkpoint = this.level;
+                    this.showNotification("CHECKPOINT REACHED", `Progress saved at Level ${this.level}`, "success");
+                    this.saveProgress();
+                } else {
+                    this.saveProgress(); // Auto save regular progress too
+                }
+
+                this.renderStats();
+                this.generatePuzzle();
+            }
+
+            handleFailure() {
+                this.mistakes++;
+                this.dom.input.classList.add('shake');
+                this.dom.input.value = '';
+                setTimeout(() => this.dom.input.classList.remove('shake'), 500);
+
+                this.renderStats();
+
+                if (this.mistakes >= MAX_MISTAKES) {
+                    this.triggerGameOver();
+                }
+            }
+
+            useHint() {
+                if (this.hints > 0) {
+                    this.hints--;
+                    this.dom.hintText.innerText = this.currentPuzzle.h;
+                    this.dom.hintBox.classList.remove('hidden');
+                    this.renderStats();
+                } else {
+                    // Shake the hint button if no hints
+                    this.dom.hintBtn.classList.add('shake');
+                    setTimeout(() => this.dom.hintBtn.classList.remove('shake'), 500);
+                }
+            }
+
+            triggerGameOver() {
+                this.showNotification(
+                    "SYSTEM FAILURE", 
+                    `Too many errors. Reverting to Level ${this.checkpoint}.`, 
+                    "error"
+                );
+            }
+
+            resetToCheckpoint() {
+                this.mistakes = 0;
+                this.level = this.checkpoint;
+                this.hints = 3; // Reset hints or keep them? Let's reset to 3 for balance.
+                this.saveProgress();
+                this.renderStats();
+                this.generatePuzzle();
+            }
+
+            // --- UI & Utilities ---
+            renderStats() {
+                this.dom.level.innerText = this.level;
+                this.dom.hints.innerText = this.hints;
+                this.dom.checkpoint.innerText = this.checkpoint;
+
+                // Integrity Bar
+                const pct = ((MAX_MISTAKES - this.mistakes) / MAX_MISTAKES) * 100;
+                this.dom.integrityBar.style.width = `${pct}%`;
+                this.dom.integrityText.innerText = `${Math.round(pct)}%`;
+                
+                // Color changes based on health
+                if(pct > 60) this.dom.integrityBar.className = "h-full bg-emerald-500 transition-all duration-300";
+                else if(pct > 30) this.dom.integrityBar.className = "h-full bg-yellow-500 transition-all duration-300";
+                else this.dom.integrityBar.className = "h-full bg-red-600 transition-all duration-300";
+
+                // Render X marks for mistakes
+                this.dom.lives.innerHTML = '';
+                for(let i=0; i<this.mistakes; i++) {
+                    this.dom.lives.innerHTML += '<i class="fas fa-times-circle"></i>';
+                }
+            }
+
+            showNotification(title, msg, type) {
+                this.dom.overlayTitle.innerText = title;
+                this.dom.overlayMsg.innerText = msg;
+                this.dom.overlay.classList.remove('hidden');
+                this.dom.overlay.classList.add('flex');
+
+                if (type === "error") {
+                    this.dom.overlayTitle.className = "text-3xl font-bold mb-2 text-red-500";
+                    this.dom.overlayIcon.innerHTML = '<i class="fas fa-skull-crossbones text-red-600"></i>';
+                    this.dom.overlayBtn.className = "bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded font-bold transition-colors";
+                    this.dom.overlayBtn.innerText = "REBOOT SYSTEM";
+                } else {
+                    this.dom.overlayTitle.className = "text-3xl font-bold mb-2 text-cyan-400";
+                    this.dom.overlayIcon.innerHTML = '<i class="fas fa-save text-cyan-400"></i>';
+                    this.dom.overlayBtn.className = "bg-cyan-600 hover:bg-cyan-500 text-white px-8 py-3 rounded font-bold transition-colors";
+                    this.dom.overlayBtn.innerText = "CONTINUE";
+                }
+            }
+
+            saveProgress() {
+                const data = {
+                    level: this.level,
+                    hints: this.hints,
+                    checkpoint: this.checkpoint
+                };
+                localStorage.setItem('cerebrum_save', JSON.stringify(data));
+            }
+
+            loadProgress() {
+                const saved = localStorage.getItem('cerebrum_save');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    this.level = data.level;
+                    this.hints = data.hints;
+                    this.checkpoint = data.checkpoint;
+                }
+            }
+        }
+
+        // Initialize
+        const game = new Game();
+
+    </script>
+<a href="../../#games" style="position:fixed;left:14px;bottom:14px;z-index:9999;font:600 12px/1 system-ui;color:#fbbf24;background:rgba(15,23,42,.85);border:1px solid rgba(251,191,36,.35);padding:9px 12px;border-radius:999px;text-decoration:none">&larr; Blind Dragon Studios</a>
+</body>
+</html>
+
