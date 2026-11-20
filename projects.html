@@ -1,7 +1,278 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><title>Games | Blind Dragon Studios</title>
-<link rel="canonical" href="https://blind-dragon-studios.tech/#games">
-<meta http-equiv="refresh" content="0; url=index.html#games">
-<meta name="robots" content="noindex"></head>
-<body style="background:#0b0908;color:#f1e8dc;font-family:system-ui"><p>Moved to <a style="color:#ff8a3d" href="index.html#games">the new site</a>.</p>
-<script>location.replace('index.html#games');</script></body></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore projects by Blind Dragon Studios. Play Touchline Manager 26/27 in your browser. Currently in development: Island Mystery—a mystery investigation game inspired by Death in Paradise.">
+    <title>Projects – Blind Dragon Studios</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ─── Navigation ─── -->
+    <nav class="site-nav" aria-label="Primary">
+        <div class="container nav-inner">
+            <a href="index.html" class="brand">
+                <img src="icon.png" alt="Blind Dragon Studios">
+                <span>BLIND DRAGON</span>
+            </a>
+
+            <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">
+                <span class="sr-only">Toggle navigation</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <div id="primary-nav" class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">Studio</a>
+                <a href="projects.html" aria-current="page">Projects</a>
+                <a href="play.html">Play Demo</a>
+                <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener" class="btn btn-primary">Join Discord</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ─── Page Header ─── -->
+    <header class="page-header">
+        <div class="container">
+            <p class="kicker">Our work</p>
+            <h1 class="page-title">Current <span class="gold">projects</span></h1>
+        </div>
+    </header>
+
+    <!-- ─── Island Mystery (Main Project) ─── -->
+    <section class="section">
+        <div class="container">
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <div class="project-card-inner">
+                        <div class="project-card-media">
+                            <img src="IslandMystery.png" alt="Island Mystery – game key art">
+                        </div>
+                        <div class="project-card-body">
+                            <span class="project-status status-dev">Beta Testing</span>
+                            <h2>Island <span class="gold">Mystery</span></h2>
+                            <p>A sun-drenched Caribbean island. A string of impossible crimes. You arrive as an outsider tasked with uncovering the truth—but every local has secrets, every paradise hides something rotten, and the island itself seems to want you gone.</p>
+                            <p>Inspired by the charm and intrigue of <em>Death in Paradise</em>, Island Mystery blends investigation gameplay with atmospheric exploration, rich characters, and a storyline that twists when you least expect it.</p>
+                            <div class="project-tags">
+                                <span class="tag">Mystery</span>
+                                <span class="tag">Investigation</span>
+                                <span class="tag">Story-driven</span>
+                                <span class="tag">Single-player</span>
+                                <span class="tag">Atmospheric</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ─── Touchline Manager 26/27 ─── -->
+                <div class="project-card reveal">
+                    <div class="project-card-inner">
+                        <div class="project-card-media">
+                            <img src="TouchlineManager.png" alt="Touchline Manager 26/27 – new career screen">
+                        </div>
+                        <div class="project-card-body">
+                            <span class="project-status status-dev">Play Now · Browser</span>
+                            <h2>Touchline <span class="gold">Manager 26/27</span></h2>
+                            <p>A fast, classic football management game in the spirit of the early-2000s greats. Pick any of 403 clubs across 26 divisions: England's top six tiers, Scotland, Wales, Northern Ireland, Ireland, Europe's big five, Slovenia, MLS, the USL Championship and the Canadian Premier League.</p>
+                            <p>Set your tactics, wheel and deal in the transfer market, and follow every match through live spoken commentary over full-screen stadium backgrounds. Promotion, relegation and season after season of management. It runs in your browser with no download.</p>
+                            <div class="project-tags">
+                                <span class="tag">Football</span>
+                                <span class="tag">Management</span>
+                                <span class="tag">Strategy</span>
+                                <span class="tag">Browser</span>
+                                <span class="tag">Single-player</span>
+                            </div>
+                            <p style="margin-top: 1.2rem;"><a href="https://blind-dragon-studios.github.io/touchline-manager/" class="btn btn-primary" target="_blank" rel="noopener" style="display: inline-block;">Play Touchline Manager</a></p>
+                            <p style="font-size: 0.8rem; opacity: 0.7;">&copy; 2026 Blind Dragon Studios. All rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── About the Game ─── -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="kicker">About the game</p>
+                <h2 class="section-title">What makes Island Mystery <span class="gold">different</span></h2>
+            </div>
+
+            <div class="cards stagger">
+                <div class="card reveal">
+                    <div class="card-num">01</div>
+                    <h3>Investigation-first gameplay</h3>
+                    <p>Examine crime scenes, interview suspects, piece together evidence, and build your case. The answers are there—if you look closely enough.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-num">02</div>
+                    <h3>A living island</h3>
+                    <p>Explore a vibrant Caribbean setting with its own culture, routines, and hidden corners. The locals have lives—and lies—of their own.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-num">03</div>
+                    <h3>Twists you won't see coming</h3>
+                    <p>Layered narratives that reward paying attention. Just when you think you've solved it, the island reveals another layer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Download & Test ─── -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="kicker">Play now</p>
+                <h2 class="section-title">Download &amp; <span class="gold">Test</span></h2>
+                <p class="section-text">Island Mystery is now available for community testing. Download the executable, follow the instructions below, and help us shape the final experience.</p>
+            </div>
+
+            <div class="cards stagger">
+                <div class="card reveal">
+                    <div class="card-num">01</div>
+                    <h3>Download the executable</h3>
+                    <p>Click the button below to download Island Mystery. The file is ready to run on Windows systems.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://github.com/Blind-Dragon-Studios/Home/blob/main/IslandMystery.exe" class="btn btn-primary" style="display: inline-block;">Download EXE</a>
+                        <p style="font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem;">File size: ~150MB | Windows 10/11</p>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-num">02</div>
+                    <h3>Run the game</h3>
+                    <p><strong>1.</strong> Extract the downloaded file to your desired location.<br><strong>2.</strong> Double-click the Island Mystery executable (.exe).<br><strong>3.</strong> The game will launch in full-screen mode. Press ESC to access settings or quit.</p>
+                </div>
+                <div class="card reveal">
+                    <div class="card-num">03</div>
+                    <h3>Share your feedback</h3>
+                    <p>Found a bug? Have gameplay suggestions? Love a character? Join our Discord community and share your thoughts in the <strong>#feedback</strong> channel. We read every message.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener" class="btn btn-outline">Go to Discord</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testing-note reveal" style="margin-top: 3rem; padding: 2rem; border-radius: var(--radius); border: 1px solid rgba(212, 175, 55, 0.2); background: rgba(212, 175, 55, 0.03);">
+                <h3 style="color: var(--gold); margin-bottom: 0.5rem;">What we're looking for:</h3>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0;">•</span> Bugs, crashes, or gameplay issues
+                    </li>
+                    <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0;">•</span> Pacing and difficulty feedback
+                    </li>
+                    <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0;">•</span> Character and story reactions
+                    </li>
+                    <li style="padding-left: 1.5rem; position: relative;">
+                        <span style="position: absolute; left: 0;">•</span> Performance and optimization notes
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Development Roadmap ─── -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="kicker">Development roadmap</p>
+                <h2 class="section-title">Where we <span class="gold">are</span></h2>
+                <p class="section-text">We're building Island Mystery step by step, sharing progress with our community along the way.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-year">Q1 2026</div>
+                    <div class="timeline-content">
+                        <h3>Concept &amp; Pre-production</h3>
+                        <p>World design, narrative framework, character concepting, and core mechanic prototyping. Building the tone and feel of the island.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-year">Q2 2026</div>
+                    <div class="timeline-content">
+                        <h3>Community Beta Testing</h3>
+                        <p>Island Mystery is now in active community testing! Download the executable, play through the game, and help us refine the experience. Your feedback directly shapes development.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-year">Q3 2026</div>
+                    <div class="timeline-content">
+                        <h3>Polish &amp; Refinement</h3>
+                        <p>Incorporating community feedback, fixing bugs, polishing gameplay, and optimizing performance based on your testing insights.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-year">2027</div>
+                    <div class="timeline-content">
+                        <h3>Launch</h3>
+                        <p>Full release with all community feedback integrated, final polish applied, and the complete Island Mystery experience ready for players worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── Update Schedule ─── -->
+    <section class="update-schedule">
+        <div class="container">
+            <div class="schedule-banner reveal-scale">
+                <div class="schedule-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                        <text x="12" y="17" text-anchor="middle" fill="currentColor" font-size="6" font-family="Cinzel" stroke="none">5</text>
+                    </svg>
+                </div>
+                <div class="schedule-content">
+                    <h3>Monthly Dev <span class="gold">Updates</span></h3>
+                    <p>We post a community update on the <strong>5th of every month</strong> on our Discord server—progress recaps, screenshots, behind-the-scenes, and roadmap news. Bonus updates for big developments mid-month.</p>
+                    <div class="schedule-date">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        Next update: May 5, 2026
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── CTA ─── -->
+    <section class="cta">
+        <div class="container reveal">
+            <p class="kicker">Ready to play?</p>
+            <h2 class="cta-title">Join the <span class="gold">test</span></h2>
+            <p class="cta-text">Download Island Mystery today, play through the game, and share your feedback on Discord. Your insights help us build something special.</p>
+            <a href="https://github.com/Blind-Dragon-Studios/Home/blob/main/IslandMystery.exe" class="btn btn-primary btn-lg">Download Now</a>
+        </div>
+    </section>
+
+    <!-- ─── Footer ─── -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <img src="icon.png" alt="Blind Dragon Studios">
+                <span class="sr-only">Blind Dragon Studios</span>
+            </div>
+            <div class="footer-links">
+                <a href="https://discord.gg/X853nZYY9F" target="_blank" rel="noopener">Discord</a>
+                <a href="https://x.com" target="_blank" rel="noopener">Twitter</a>
+                <a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a>
+            </div>
+            <p class="copyright">&copy; 2026 Blind Dragon Studios</p>
+        </div>
+    </footer>
+
+    <script src="site.js" defer></script>
+</body>
+</html>
