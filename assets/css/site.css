@@ -210,8 +210,8 @@ body::after {
 
 .hero-rail {
   margin-top: 48px;
-  display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
-  max-width: 920px;
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px;
+  max-width: 1080px;
 }
 .rail-item {
   background: rgba(23, 18, 15, .55); backdrop-filter: blur(10px);
@@ -468,7 +468,7 @@ body::after {
   .nav-cta { margin: 14px 0 0; }
   .nav-cta .btn { flex: 1; justify-content: center; }
   .nav-toggle { display: inline-flex; }
-  .hero-rail { grid-template-columns: repeat(5, minmax(150px, 1fr)); overflow-x: auto; scrollbar-width: none; }
+  .hero-rail { grid-template-columns: repeat(6, minmax(150px, 1fr)); overflow-x: auto; scrollbar-width: none; }
   .spot, .spot:nth-child(even) { grid-template-columns: 1fr; }
   .spot:nth-child(even) .spot-media { order: 0; }
   .itch { grid-template-columns: 1fr; }
